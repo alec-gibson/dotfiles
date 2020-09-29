@@ -1,5 +1,3 @@
-" vim: set foldmethod=marker:
-
 " {{{ Variables
 let g:os = substitute(system('uname'), "\n", "", "")
 if g:os == "Linux"
@@ -28,10 +26,7 @@ set wrap                                                            " wrap lines
 set number relativenumber                                           " line numbers (hybrid)
 set mouse=a                                                         " enable mouse (sometimes just easier)
 set wildignore=*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store   " ignored files in wildmenu
-set foldenable                                                      " enable folding
-set foldmethod=syntax 						    " fold based on language syntax
-set foldlevelstart=10
-set foldnestmax=10                                                  " 10 nested fold max
+set nofoldenable                                                    " disable folding
 set scrolloff=5                                                     " always keep 5 lines visible above and below
 set laststatus=2                                                    " always display statusline
 set tabstop=4                                                       " tab width
@@ -66,9 +61,6 @@ filetype indent on
 let mapleader = " "
 let maplocalleader = ","
 
-" fold using syntax in markdown files
-let g:markdown_folding = 1
-
 " netrw with no banner
 let g:netrw_banner = 0
 let g:netrw_altv = 1
@@ -96,9 +88,6 @@ Plug 'itchyny/lightline.vim'
 " {{{ file browser
 " icons
 Plug 'ryanoasis/vim-devicons'
-
-" fast file browser
-" Plug 'justinmk/vim-dirvish'
 
 " fast file tree viewer / file manager
 Plug 'lambdalisue/nerdfont.vim'
@@ -133,6 +122,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
 " }}}
 
+" {{{ misc
+" visualize the undo tree
+Plug 'mbbill/undotree'
+
+" interface to grep
+Plug 'mhinz/vim-grepper'
+" }}}
+
 " {{{ language support
 " tex support
 Plug 'lervag/vimtex'
@@ -147,28 +144,15 @@ if dev
     " golang support
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-    " Snippets
-    Plug 'honza/vim-snippets'
-
     " Jenkinsfile
     Plug 'martinda/Jenkinsfile-vim-syntax'    
+
+    " LSP config
+    Plug 'neovim/nvim-lspconfig'
+
+    " Autocompletion
+    Plug 'lifepillar/vim-mucomplete'
 endif
-" }}}
-
-" {{{ misc
-" disable syntax-based folding while editing to prevent slowdown
-Plug 'Konfekt/FastFold'
-
-" visualize the undo tree
-Plug 'mbbill/undotree'
-
-" interface to grep
-Plug 'mhinz/vim-grepper'
-" }}}
-
-" {{{ New: need to investigate more
-" automatic persistent Vim sessions
-" Plug 'thaerkh/vim-workspace'
 " }}}
 
 call plug#end()
@@ -230,6 +214,39 @@ endfunction
 " }}}
 
 " {{{ Configure Plugins
+" LSP settings
+" log file location: /Users/michael/.local/share/nvim/vim-lsp.log
+:lua << EOF
+    local nvim_lsp = require('nvim_lsp')
+    local buf_set_keymap = vim.api.nvim_buf_set_keymap
+
+    local on_attach = function(_, bufnr)
+	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+	-- Mappings.
+	local opts = { noremap=true, silent=true }
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gm', '<Cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<Cmd>lua vim.lsp.buf.references()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gy', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    end
+
+    local servers = {'gopls'}
+    for _, lsp in ipairs(servers) do
+	nvim_lsp[lsp].setup {
+	    on_attach = on_attach,
+	}
+    end
+EOF
+
+" Set up mucomplete
+let g:mucomplete#enable_auto_at_startup = 1
+set completeopt+=noinsert,noselect
+set shortmess+=c
+set belloff+=ctrlg
 
 " gruvbox dark colorscheme
 set background=dark
