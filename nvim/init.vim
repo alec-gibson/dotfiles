@@ -147,12 +147,6 @@ if dev
     " golang support
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-    " language server client
-    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-
-    " FZF integration for coc.nvim
-    Plug 'antoinemadec/coc-fzf'
-
     " Snippets
     Plug 'honza/vim-snippets'
 
@@ -261,12 +255,11 @@ let g:vimwiki_list = [{ 'path': '~/qnap/home/vimwiki', 'path_html': '~/qnap/Web'
 let g:lightline = {
 	    \ 'active': {
 	    \   'left': [ [ 'mode', 'paste' ],
-	    \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'cocstatus' ] ]
+	    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
 	    \ },
 	    \ 'component_function': {
 	    \   'gitbranch': 'FugitiveHead',
 	    \   'filename': 'LightlineFilename',
-	    \   'cocstatus': 'coc#status',
 	    \ },
 	    \ }
 let g:lightline.colorscheme = 'gruvbox'
@@ -284,67 +277,6 @@ if dev
     let g:go_highlight_functions = 1
     let g:go_highlight_function_parameters = 1
     let g:go_highlight_generate_tags = 1
-
-    " -------------------------------------------------------------------------------------------------
-    " coc.nvim default settings
-    " -------------------------------------------------------------------------------------------------
-
-    " if hidden is not set, TextEdit might fail.
-    set hidden
-    " Better display for messages
-    set cmdheight=2
-    " Smaller updatetime for CursorHold & CursorHoldI
-    set updatetime=300
-    " don't give |ins-completion-menu| messages.
-    set shortmess+=c
-    " always show signcolumns
-    set signcolumn=yes
-
-    " Map <tab> for trigger completion, completion confirm, snippet expand and jump
-    " like VSCode. >
-    inoremap <silent><expr> <TAB>
-		\ pumvisible() ? coc#_select_confirm() :
-		\ coc#expandableOrJumpable() ?
-		\ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-		\ <SID>check_back_space() ? "\<TAB>" :
-		\ coc#refresh()
-
-    function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
-
-    let g:coc_snippet_next = '<tab>'
-
-    " Use <c-space> to trigger completion.
-    inoremap <silent><expr> <c-space> coc#refresh()
-
-    " Use `[c` and `]c` to navigate diagnostics
-    nmap <silent> [c <Plug>(coc-diagnostic-prev)
-    nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-    " Remap keys for gotos
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gm <Plug>(coc-implementation)
-    nmap <silent> gr <Plug>(coc-references)
-
-    " Remap for rename current word
-    nmap <leader>r <Plug>(coc-rename)
-
-    " Show all code actions
-    nmap <leader>a :<C-u>CocFzfList actions<cr>
-
-    " Show file outline
-    nmap <leader>o :<C-u>CocFzfList outline<cr>
-
-    " disable vim-go :GoDef short cut (gd)
-    " this is handled by LanguageClient [LC]
-    let g:go_def_mapping_enabled = 0
-
-    autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-
-    let g:coc_global_extensions = [ 'coc-json', 'coc-snippets', 'coc-lua', 'coc-clangd', 'coc-solargraph', 'coc-java', 'coc-vimtex' ]
 endif
 
 " }}}
@@ -396,118 +328,3 @@ endif
 nnoremap <silent> <leader>t :Fern . -drawer -reveal=% -toggle<cr>
 
 " }}}
-
-" {{{ Not Currently Used
-" Written myself
-" function NERDTreeSmartToggleFind()
-"     if !g:NERDTree.ExistsForTab()
-" 		" If the current tab has no NERD tree, try to mirror another tab's
-"         :NERDTreeMirror
-"         if g:NERDTree.ExistsForTab()
-"             if @% != ""
-" 				" if a file is open in the current buffer, find it
-"                 :NERDTreeFind
-"             endif
-"         elseif @% == ""
-"             :NERDTree
-"         else
-"             :NERDTreeFind
-"         endif
-"     elseif g:NERDTree.IsOpen() || @% == ""
-"         :NERDTreeToggle
-"     else
-" 		" Call NERDTreeFind if the current tab's NERD tree is hidden and there
-" 		" is a file open in the current buffer.
-"         :NERDTreeFind                        
-"     endif
-" endfunction
-" }}}
-"
-" " The highlighted when the dirvish buffer was made
-" let t:pre_dirvish_win_id = 0
-
-" " Find the window ID which currently has an open dirvish buffer, if any
-" function GetDirvishWinID()
-"     if &filetype == 'dirvish'
-" 	return win_getid()
-"     endif
-
-"     let l:curr_bufnr = bufnr()
-"     let l:win_id = 0
-"     for l:buf in tabpagebuflist()
-" 	execute 'silent buf' l:buf
-" 	if &filetype == 'dirvish'
-" 	    let l:win_id = bufwinid(l:buf)
-" 	endif
-" 	execute 'silent buf' l:curr_bufnr
-
-" 	if l:win_id
-" 	    return l:win_id
-" 	endif
-"     endfor
-" endfunction
-
-" " If the current file is a dirvish file, close dirvish.
-" " Otherwise, open dirvish to the far left.
-" " 	- if dirvish is already open, replace it.
-" function ToggleDirvish()
-"     let l:dirvish_win_id = GetDirvishWinID()
-"     let l:curr_filename = @%
-"     if l:dirvish_win_id
-" 	if l:dirvish_win_id == win_getid()
-" 	    execute 'q'
-" 	    if t:pre_dirvish_win_id
-" 		call win_gotoid(t:pre_dirvish_win_id)
-" 	    endif
-" 	else
-" 	    execute win_gotoid(l:dirvish_win_id)
-" 	    execute 'Dirvish ' . l:curr_filename
-" 	    execute "normal! /" . fnamemodify(l:curr_filename, ":t") . "\<cr>"
-" 	endif
-"     else
-" 	let t:pre_dirvish_win_id = win_getid()
-" 	if @% == ""
-" 	    :Vexplore
-" 	else
-" 	    :Vexplore %
-" 	endif
-"     endif
-" endfunction
-
-" " Made this for 2 reasons:
-" " 	1. so that I can remap l so that it behaves like <CR>
-" " 	2. so that I can open files in my other window, like NERDTree
-" function OpenFileDirvish()
-"     let file_to_open = getline('.')
-"     let s:sep = exists('+shellslash') && !&shellslash ? '\' : '/'
-"     let isdir = (file_to_open[-1:] == s:sep)
-"     if isdir
-" 	call dirvish#open('edit', 0)
-"     else
-" 	if !t:pre_dirvish_win_id
-" 	    execute 'edit ' . file_to_open
-" 	else
-" 	    execute win_gotoid(t:pre_dirvish_win_id)
-" 	    execute 'edit ' . file_to_open
-" 	endif
-"     endif
-" endfunction
-"
-" " override netrw commands with dirvish equivalents
-" let g:loaded_netrwPlugin = 1
-" command! -nargs=? -complete=dir Explore Dirvish <args>
-" command! -nargs=? -complete=dir Sexplore topleft split | silent Dirvish <args>
-" command! -nargs=? -complete=dir Vexplore topleft 80vsplit | silent Dirvish <args>
-" toggle vertical file explorer
-"
-" nnoremap <silent> <leader>t :call ToggleDirvish()<cr>
-
-" " dirvish mappings
-" autocmd FileType dirvish
-" 	    \  nnoremap <silent><buffer> t :call dirvish#open('tabedit', 0)<CR>
-" 	    \ |xnoremap <silent><buffer> t :call dirvish#open('tabedit', 0)<CR>
-" 	    \ |nnoremap <silent><buffer> <CR> :call OpenFileDirvish()<CR><Left>
-" 	    \ |nnoremap <silent><buffer> l :call OpenFileDirvish()<CR><Left>
-" 	    \ |nmap <silent><buffer> h <Plug>(dirvish_up)
-
-source ~/.config/nvim/imerge.vim
