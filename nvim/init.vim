@@ -1,8 +1,5 @@
 " {{{ Variables
 let g:os = substitute(system('uname'), "\n", "", "")
-if g:os == "Linux"
-    set clipboard=unnamedplus
-endif
 let lightweight = 0
 let dev = 1
 " }}}
@@ -132,6 +129,7 @@ Plug 'mhinz/vim-grepper'
 
 " {{{ language support
 " tex support
+" NOTE: next time you use latex, setup the texlab language server
 Plug 'lervag/vimtex'
 
 " vim wiki
@@ -150,8 +148,15 @@ if dev
     " LSP config
     Plug 'neovim/nvim-lspconfig'
 
-    " Autocompletion
-    Plug 'lifepillar/vim-mucomplete'
+    " autocomplete
+    Plug 'nvim-lua/completion-nvim'
+
+    " better default diagnostic behaviour
+    Plug 'nvim-lua/diagnostic-nvim'
+    
+    " snippets
+    Plug 'hrsh7th/vim-vsnip'
+    Plug 'hrsh7th/vim-vsnip-integ'
 endif
 " }}}
 
@@ -215,13 +220,13 @@ endfunction
 
 " {{{ Configure Plugins
 " LSP settings
-" log file location: /Users/michael/.local/share/nvim/vim-lsp.log
 :lua << EOF
     local nvim_lsp = require('nvim_lsp')
     local buf_set_keymap = vim.api.nvim_buf_set_keymap
 
     local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+	require'diagnostic'.on_attach()
 
 	-- Mappings.
 	local opts = { noremap=true, silent=true }
@@ -232,9 +237,11 @@ endfunction
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gy', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>o', '<Cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
     end
 
-    local servers = {'gopls'}
+    local servers = {'gopls', 'solargraph', 'jdtls'}
     for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup {
 	    on_attach = on_attach,
@@ -242,11 +249,23 @@ endfunction
     end
 EOF
 
-" Set up mucomplete
-let g:mucomplete#enable_auto_at_startup = 1
-set completeopt+=noinsert,noselect
+" completion-nvim in every buffer
+autocmd BufEnter * lua require'completion'.on_attach()
+set completeopt+=menuone,noinsert,noselect
 set shortmess+=c
 set belloff+=ctrlg
+let g:completion_enable_snippet = 'vim-vsnip'
+let g:completion_auto_change_source = 1
+let g:completion_chain_complete_list = [
+    \{'complete_items': ['lsp', 'snippet']},
+    \{'mode': '<c-n>'}
+\]
+
+" diagnostic-nvim settings
+let g:diagnostic_show_sign = 0
+
+" vim-vsnip
+let g:vsnip_snippet_dir = '~/.config/nvim/snippets'
 
 " gruvbox dark colorscheme
 set background=dark
@@ -299,6 +318,12 @@ endif
 " }}}
 
 " {{{ Keybindings
+imap <C-j> <Plug>(completion_next_source)
+imap <C-k> <Plug>(completion_prev_source)
+imap <expr> <C-l> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+smap <expr> <C-l> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+imap <expr> <C-h> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+smap <expr> <C-h> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 
 " gx without netrw
 nnoremap gx <Cmd>call OpenLink()<CR>
@@ -329,8 +354,8 @@ nnoremap <leader>f :Rg<cr>
 " interactive git status
 nnoremap <leader>g :G<cr>
 
-nnoremap <leader>dh :diffget //2<CR>
-nnoremap <leader>dl :diffget //3<CR>
+" list diagnostics
+nnoremap <leader>d :GoDiagnostics<cr>
 
 " <space><space> to compile
 nnoremap <leader><space> :call SmartCompile()<cr>
