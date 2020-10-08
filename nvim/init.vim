@@ -263,9 +263,10 @@ let g:diagnostic_show_sign = 0
 " vim-vsnip
 let g:vsnip_snippet_dir = '~/.config/nvim/snippets'
 
-" gruvbox dark colorscheme
-set background=dark
+" clear background
 colorscheme gruvbox
+set background=dark
+hi Normal guibg=NONE ctermbg=NONE
 
 " icons in fern
 let g:fern#renderer = "nerdfont"
@@ -366,6 +367,7 @@ nnoremap <silent> <leader>k :wincmd s<CR>
 nnoremap <silent> <leader>l :wincmd v \| wincmd l<CR>
 
 nnoremap <silent> <leader>v :call ToggleVimux()<cr>
+nnoremap <silent> <leader>V :VimuxPromptCommand<cr>
 
 " go test all
 cnoreabbrev gta exec "call VimuxRunCommand('cd ".getcwd()." && clear && go test ./pkg/...')"
