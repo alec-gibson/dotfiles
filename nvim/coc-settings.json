@@ -10,6 +10,7 @@
     "UltiSnips",
     "gosnippets/UltiSnips"
   ],
+  {}
   "java.import.gradle.wrapper.enabled": true,
   "java.home": "/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home",
   "java.configuration.runtimes": [
