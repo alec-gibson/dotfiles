@@ -45,9 +45,6 @@ Plug 'tpope/vim-sleuth'
 " {{{ misc
 " visualize the undo tree
 Plug 'mbbill/undotree'
-
-" interface to grep
-Plug 'mhinz/vim-grepper'
 " }}}
 
 " {{{ tmux
@@ -79,15 +76,24 @@ if g:dev
     " Jenkinsfile
     Plug 'martinda/Jenkinsfile-vim-syntax'    
 
-    " LSP config
-    Plug 'neovim/nvim-lspconfig'
+    " " LSP config
+    " Plug 'neovim/nvim-lspconfig'
 
-    " autocomplete
-    Plug 'nvim-lua/completion-nvim'
-
-    " better default diagnostic behaviour
-    Plug 'nvim-lua/diagnostic-nvim'
+    " " better default diagnostic behaviour
+    " Plug 'nvim-lua/diagnostic-nvim'
     
+    " " autocomplete
+    " Plug 'nvim-lua/completion-nvim'
+
+    " language server client
+    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+    " FZF integration for coc.nvim
+    Plug 'antoinemadec/coc-fzf'
+
+    " Snippets
+    Plug 'honza/vim-snippets'
+
     " snippets
     Plug 'hrsh7th/vim-vsnip'
     Plug 'hrsh7th/vim-vsnip-integ'

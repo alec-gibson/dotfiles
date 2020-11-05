@@ -14,7 +14,7 @@ let g:dev = 1
 
 exec "source " . stdpath("config") . "/settings.vim"
 exec "source " . stdpath("config") . "/plugins.vim"
-exec "luafile " . stdpath("config") . "/lsp-config.lua"
+" exec "luafile " . stdpath("config") . "/lsp-config.lua"
 exec "source " . stdpath("config") . "/plugin-config.vim"
 exec "source " . stdpath("config") . "/functions.vim"
 exec "source " . stdpath("config") . "/autocommands.vim"

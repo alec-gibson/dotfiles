@@ -46,3 +46,5 @@ let g:netrw_altv = 1
 
 " fix background color erase bug with vim
 let &t_ut=''
+
+command! -nargs=+ Grep execute 'silent grep! <args>' | copen
