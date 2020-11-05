@@ -1,22 +1,3 @@
-" NOTE: these settings are for the nvim builtin LSP plugins
-
-" " completion-nvim in every buffer
-" set completeopt+=menuone,noinsert,noselect
-" set shortmess+=c
-" set belloff+=ctrlg
-" let g:completion_enable_snippet = 'vim-vsnip'
-" let g:completion_auto_change_source = 1
-" let g:completion_chain_complete_list = [
-"     \{'complete_items': ['lsp', 'snippet']},
-"     \{'mode': '<c-n>'}
-" \]
-
-" " diagnostic-nvim settings
-" let g:diagnostic_show_sign = 0
-
-" " vim-vsnip
-" let g:vsnip_snippet_dir = '~/.config/nvim/snippets'
-
 " colours
 colorscheme gruvbox
 set background=dark
@@ -79,7 +60,7 @@ if g:dev
     let g:go_highlight_functions = 1
     let g:go_highlight_function_parameters = 1
     let g:go_highlight_generate_tags = 1
-
+    
     " -------------------------------------------------------------------------------------------------
     " coc.nvim default settings
     " -------------------------------------------------------------------------------------------------

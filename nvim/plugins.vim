@@ -1,103 +1,32 @@
 call plug#begin()
 
-" {{{ appearance
-" gruvbox
 Plug 'morhetz/gruvbox'
-
-" nice mode line
 Plug 'itchyny/lightline.vim'
-
-" focused reading view
-Plug 'junegunn/goyo.vim'
-" }}}
-
-" {{{ files
-" icons
+Plug 'junegunn/goyo.vim' 						" focused reading view
 Plug 'ryanoasis/vim-devicons'
-
-" fast file tree viewer / file manager
+Plug 'lambdalisue/fern.vim' 						" fast file tree viewer / file manager
 Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-
-" fuzzy finder
-" :h fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
-" unix file commands
-Plug 'tpope/vim-eunuch'
-" }}}
-
-" {{{ tpope
-" comment lines
-" :h commentary
-Plug 'tpope/vim-commentary'
-
-" vim git client
-" :h fugitive
+Plug 'tpope/vim-eunuch' 						" unix file commands
+Plug 'tpope/vim-commentary' 						" comment lines
 Plug 'tpope/vim-fugitive'
-
-" automatically detect indent
-Plug 'tpope/vim-sleuth'
-" }}}
-
-" {{{ misc
-" visualize the undo tree
+Plug 'tpope/vim-sleuth' 						" automatically detect indent
 Plug 'mbbill/undotree'
-" }}}
-
-" {{{ tmux
-" seamless interop with tmux splits
-Plug 'christoomey/vim-tmux-navigator'
-
-" run commands in tmux splits
-Plug 'benmills/vimux'
-
-" run golang tests intmux splits
-Plug 'benmills/vimux-golang'
-" }}}
-
-" {{{ language support
-" tex support
-" NOTE: next time you use latex, setup the texlab language server
-Plug 'lervag/vimtex'
-
-" vim wiki
+Plug 'christoomey/vim-tmux-navigator' 					" seamless interop with tmux splits
+Plug 'benmills/vimux' 							" run commands in tmux splits
+Plug 'benmills/vimux-golang' 						" run golang tests intmux splits
+Plug 'lervag/vimtex'							" NOTE: next time you use latex, setup the texlab language server
 Plug 'vimwiki/vimwiki'
-
-" Automatic bullet points
 Plug 'dkarter/bullets.vim'
-
+Plug 'unblevable/quick-scope'
 if g:dev
-    " golang support
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
-    " Jenkinsfile
     Plug 'martinda/Jenkinsfile-vim-syntax'    
-
-    " " LSP config
-    " Plug 'neovim/nvim-lspconfig'
-
-    " " better default diagnostic behaviour
-    " Plug 'nvim-lua/diagnostic-nvim'
-    
-    " " autocomplete
-    " Plug 'nvim-lua/completion-nvim'
-
-    " language server client
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-
-    " FZF integration for coc.nvim
     Plug 'antoinemadec/coc-fzf'
-
-    " Snippets
     Plug 'honza/vim-snippets'
-
-    " snippets
-    Plug 'hrsh7th/vim-vsnip'
-    Plug 'hrsh7th/vim-vsnip-integ'
 endif
-" }}}
 
 call plug#end()

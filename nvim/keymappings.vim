@@ -18,14 +18,6 @@ nnoremap <silent> <leader>l :wincmd v \| wincmd l<CR>
 " <space><space> to compile
 nnoremap <leader><space> :call SmartCompile()<cr>
 
-" completion mappings
-" imap <C-j> <Plug>(completion_next_source)
-" imap <C-k> <Plug>(completion_prev_source)
-" imap <expr> <C-l> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
-" smap <expr> <C-l> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
-" imap <expr> <C-h> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-" smap <expr> <C-h> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-
 " 		Coc mappings
 " ========================================
 " Use <c-space> to trigger completion.
