@@ -11,8 +11,10 @@ set scrolloff=5                                                     " always kee
 set laststatus=2                                                    " always display statusline
 set tabstop=4                                                       " tab width
 set cursorline 							    " highlight current line
+set nrformats= 							    " make C-x and C-a treat numbers with leading zeroes as decimal
 set conceallevel=1
 set grepprg=rg\ --vimgrep
+set noshowmode 							    " don't need to show mode because of lightline
 
 " search settings
 set ignorecase
@@ -43,6 +45,12 @@ let maplocalleader = ","
 " netrw with no banner
 let g:netrw_banner = 0
 let g:netrw_altv = 1
+
+" theme options
+if has('termguicolors')
+    set termguicolors
+endif
+set background=dark
 
 " fix background color erase bug with vim
 let &t_ut=''

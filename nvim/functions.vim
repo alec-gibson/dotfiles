@@ -5,6 +5,8 @@ function SmartCompile()
 	:GoTestCompile
     elseif @% =~ "\.go$"
 	:GoBuild
+    elseif @% =~ "\.wiki$"
+	:Vimwiki2HTML 
     else
 	:make
     endif
@@ -30,7 +32,6 @@ function! LightlineFilename()
     endif
     return expand('%')
 endfunction
-
 
 " Stole this off reddit.
 " Use gx to open files and URLs, without depending on netrw.

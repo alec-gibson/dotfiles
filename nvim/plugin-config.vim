@@ -1,7 +1,9 @@
 " colours
-colorscheme gruvbox
-set background=dark
-hi Normal guibg=NONE ctermbg=NONE
+" Set contrast.
+" This configuration option should be placed before `colorscheme gruvbox-material`.
+" Available values: 'hard', 'medium'(default), 'soft'
+let g:gruvbox_material_background = 'hard'
+colorscheme gruvbox-material
 
 " icons in fern
 let g:fern#renderer = "nerdfont"
@@ -27,6 +29,7 @@ let g:fzf_layout = { 'down': '~40%' }
 " vimtex config
 let g:vimtex_view_method = 'zathura'
 let g:tex_flavor = 'latex'
+let g:vimtex_latexmk = 'nvr'
 
 " vimwiki location
 let g:vimwiki_list = [{ 'path': '~/qnap/home/vimwiki', 'path_html': '~/qnap/Web' }]
@@ -46,20 +49,11 @@ let g:lightline = {
 	    \ 	'left': [ [ 'tabs' ] ],
 	    \ 	'right': [ [ 'close' ] ]
 	    \ },
-	    \ 'colorscheme': 'gruvbox',
+	    \ 'colorscheme': 'material',
 	    \ }
 
 " golang syntax highlighting
 if g:dev
-    let g:go_highlight_variable_assignments = 1    
-    let g:go_highlight_variable_declarations = 1
-    let g:go_highlight_fields = 1
-    let g:go_highlight_types = 1
-    let g:go_highlight_extra_types = 1
-    let g:go_highlight_function_calls = 1
-    let g:go_highlight_functions = 1
-    let g:go_highlight_function_parameters = 1
-    let g:go_highlight_generate_tags = 1
     
     " -------------------------------------------------------------------------------------------------
     " coc.nvim default settings
@@ -98,7 +92,7 @@ if g:dev
 
     autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
-    let g:coc_global_extensions = [ 'coc-json', 'coc-snippets', 'coc-lua', 'coc-clangd', 'coc-solargraph', 'coc-java', 'coc-vimtex', 'coc-vimlsp' ]
+    let g:coc_global_extensions = [ 'coc-json', 'coc-snippets', 'coc-lua', 'coc-clangd', 'coc-solargraph', 'coc-java', 'coc-vimlsp', 'coc-vimtex' ]
 
     let g:coc_fzf_preview = ''
     let g:coc_fzf_opts = []

@@ -1,6 +1,6 @@
 call plug#begin()
 
-Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim' 						" focused reading view
 Plug 'ryanoasis/vim-devicons'
@@ -27,6 +27,7 @@ if g:dev
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     Plug 'antoinemadec/coc-fzf'
     Plug 'honza/vim-snippets'
+    Plug 'nvim-treesitter/nvim-treesitter'
 endif
 
 call plug#end()
