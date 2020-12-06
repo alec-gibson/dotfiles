@@ -49,7 +49,7 @@ let g:lightline = {
 	    \ 	'left': [ [ 'tabs' ] ],
 	    \ 	'right': [ [ 'close' ] ]
 	    \ },
-	    \ 'colorscheme': 'material',
+	    \ 'colorscheme': 'gruvbox_material',
 	    \ }
 
 " golang syntax highlighting
