@@ -20,11 +20,8 @@ augroup fern-config
     autocmd FileType fern call s:init_fern()
 augroup END
 
-" setup fzf file and buffer searching
-if g:lightweight
-    let g:fzf_preview_window = ''
-endif
 let g:fzf_layout = { 'down': '~40%' }
+let g:fzfSwitchProjectWorkspaces = [ '~/git' ]
 
 " vimtex config
 let g:vimtex_view_method = 'zathura'
@@ -52,49 +49,44 @@ let g:lightline = {
 	    \ 'colorscheme': 'gruvbox_material',
 	    \ }
 
-" golang syntax highlighting
-if g:dev
-    
-    " -------------------------------------------------------------------------------------------------
-    " coc.nvim default settings
-    " -------------------------------------------------------------------------------------------------
+" -------------------------------------------------------------------------------------------------
+" coc.nvim settings
+" -------------------------------------------------------------------------------------------------
 
-    " if hidden is not set, TextEdit might fail.
-    set hidden
-    " Better display for messages
-    set cmdheight=2
-    " Smaller updatetime for CursorHold & CursorHoldI
-    set updatetime=300
-    " don't give |ins-completion-menu| messages.
-    set shortmess+=c
-    " always show signcolumns
-    set signcolumn=yes
+" if hidden is not set, TextEdit might fail.
+set hidden
+" Better display for messages
+set cmdheight=2
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+" always show signcolumns
+set signcolumn=yes
 
-    " Map <tab> for trigger completion, completion confirm, snippet expand and jump
-    " like VSCode. >
-    inoremap <silent><expr> <TAB>
-		\ pumvisible() ? coc#_select_confirm() :
-		\ coc#expandableOrJumpable() ?
-		\ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-		\ <SID>check_back_space() ? "\<TAB>" :
-		\ coc#refresh()
+" Map <tab> for trigger completion, completion confirm, snippet expand and jump
+" like VSCode. >
+inoremap <silent><expr> <TAB>
+	    \ pumvisible() ? coc#_select_confirm() :
+	    \ coc#expandableOrJumpable() ?
+	    \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+	    \ <SID>check_back_space() ? "\<TAB>" :
+	    \ coc#refresh()
 
-    function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-    let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_next = '<tab>'
 
-    " disable vim-go :GoDef short cut (gd)
-    " this is handled by LanguageClient [LC]
-    let g:go_def_mapping_enabled = 0
+" disable vim-go :GoDef short cut (gd)
+" this is handled by LanguageClient [LC]
+let g:go_def_mapping_enabled = 0
 
-    autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
-    let g:coc_global_extensions = [ 'coc-json', 'coc-snippets', 'coc-lua', 'coc-clangd', 'coc-solargraph', 'coc-java', 'coc-vimlsp', 'coc-vimtex' ]
+let g:coc_global_extensions = [ 'coc-json', 'coc-snippets', 'coc-lua', 'coc-clangd', 'coc-solargraph', 'coc-java', 'coc-vimlsp', 'coc-vimtex' ]
 
-    let g:coc_fzf_preview = ''
-    let g:coc_fzf_opts = []
-
-endif
+let g:coc_fzf_preview = ''
+let g:coc_fzf_opts = []

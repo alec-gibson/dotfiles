@@ -1,7 +1,5 @@
 " {{{ Variables
 let g:os = substitute(system('uname'), "\n", "", "")
-let g:lightweight = 0
-let g:dev = 1
 " }}}
 
 " {{{ TODO:

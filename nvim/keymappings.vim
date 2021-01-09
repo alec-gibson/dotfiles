@@ -61,6 +61,9 @@ nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>H :Helptags<cr>
 nnoremap <leader>f :Rg<cr>
 
+" fzf-project mappings
+nnoremap <leader>p :FzfSwitchProject<cr>
+
 " fugitive mappings
 nnoremap <leader>g :G<cr>
 
