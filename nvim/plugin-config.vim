@@ -22,6 +22,9 @@ augroup END
 
 let g:fzf_layout = { 'down': '~40%' }
 let g:fzfSwitchProjectWorkspaces = [ '~/git' ]
+let g:fzfSwitchProjectProjectDepth = -1
+let g:fzfSwitchProjectGitInitBehavior = 'none'
+let g:fzfSwitchProjectAlwaysChooseFile = 0
 
 " vimtex config
 let g:vimtex_view_method = 'zathura'

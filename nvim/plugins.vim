@@ -9,7 +9,7 @@ Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'alec-gibson/fzf-project'
+Plug 'benwainwright/fzf-project'
 Plug 'tpope/vim-eunuch' 						" unix file commands
 Plug 'tpope/vim-commentary' 						" comment lines
 Plug 'tpope/vim-fugitive'
