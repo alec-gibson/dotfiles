@@ -32,7 +32,7 @@ let g:tex_flavor = 'latex'
 let g:vimtex_latexmk = 'nvr'
 
 " vimwiki location
-let g:vimwiki_list = [{ 'path': '~/qnap/home/vimwiki', 'path_html': '~/qnap/Web' }]
+let g:vimwiki_list = [{ 'path': '~/geekserver/documents/vimwiki', 'path_html': '~/geekserver/documents/vimwiki' }]
 
 " simple aesthetic statusline
 let g:lightline = {

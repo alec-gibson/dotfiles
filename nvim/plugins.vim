@@ -27,5 +27,8 @@ Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'antoinemadec/coc-fzf'
 Plug 'honza/vim-snippets'
+Plug 'kana/vim-textobj-user'
+Plug 'thinca/vim-textobj-between'
+Plug 'rhysd/vim-textobj-anyblock'
 
 call plug#end()
