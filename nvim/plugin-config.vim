@@ -33,6 +33,7 @@ let g:vimtex_latexmk = 'nvr'
 
 " vimwiki location
 let g:vimwiki_list = [{ 'path': '~/geekserver/documents/vimwiki', 'path_html': '~/geekserver/documents/vimwiki' }]
+let g:vimwiki_global_ext = 0 " don't enable vimwiki outside the configured directories
 
 " simple aesthetic statusline
 let g:lightline = {

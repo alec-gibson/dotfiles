@@ -30,5 +30,7 @@ Plug 'honza/vim-snippets'
 Plug 'kana/vim-textobj-user'
 Plug 'thinca/vim-textobj-between'
 Plug 'rhysd/vim-textobj-anyblock'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc'
 
 call plug#end()
