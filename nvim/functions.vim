@@ -55,3 +55,14 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
+
+" TODO: create a function to execute :GFiles if in git repo, and :Files
+" otherwise
+function! OpenFile()
+  let gitDir = FugitiveGitDir()
+  if gitDir == ''
+    Files
+  else
+    GFiles
+  endif
+endfunction

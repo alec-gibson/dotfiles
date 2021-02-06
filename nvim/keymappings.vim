@@ -56,10 +56,10 @@ nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
 " ========================================
 
 " fzf mappings
-nnoremap <leader>e :Files<cr>
+nnoremap <leader>e :call OpenFile()<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>H :Helptags<cr>
-nnoremap <leader>f :Rg<cr>
+nnoremap <leader>f :RG<cr>
 
 " fzf-project mappings
 nnoremap <leader>p :FzfSwitchProject<cr>
