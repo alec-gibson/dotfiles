@@ -1,2 +1,0 @@
-
-set grepprg=rg\ --vimgrep

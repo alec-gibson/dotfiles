@@ -43,26 +43,3 @@ function! OpenLink()
 	call jobstart('open '..file, {'detach': v:true})
     endif
 endfunction
-
-" show documentation in preview window.
-" taken from https://github.com/neoclide/coc.nvim
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
-" TODO: create a function to execute :GFiles if in git repo, and :Files
-" otherwise
-function! OpenFile()
-  let gitDir = FugitiveGitDir()
-  if gitDir == ''
-    Files
-  else
-    GFiles
-  endif
-endfunction

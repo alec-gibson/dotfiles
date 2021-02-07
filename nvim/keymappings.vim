@@ -2,7 +2,7 @@ nnoremap <leader>w :w<cr>
 nnoremap gx <Cmd>call OpenLink()<CR>
 
 " project-wide recursive grep
-nnoremap <C-g> :Grep 
+" nnoremap <C-g> :Grep 
 nnoremap <C-n> :cnext<cr>
 nnoremap <C-p> :cprevious<cr>
 
@@ -18,48 +18,16 @@ nnoremap <silent> <leader>l :wincmd v \| wincmd l<CR>
 " <space><space> to compile
 nnoremap <leader><space> :call SmartCompile()<cr>
 
-" 		Coc mappings
-" ========================================
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gm <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Remap for rename current word
-nmap <leader>r <Plug>(coc-rename)
-
-" Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-nnoremap <silent><nowait> <leader>a  :<C-u>CocFzfList actions<cr>
-nnoremap <silent><nowait> <leader>d  :<C-u>CocFzfList dagnostics<cr>
-nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
-" ========================================
-
 " fzf mappings
-nnoremap <leader>e :call OpenFile()<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>H :Helptags<cr>
-nnoremap <leader>f :RG<cr>
+nnoremap <leader>e :Telescope find_files<cr>
+nnoremap <leader>b :Telescope buffers<cr>
+nnoremap <leader>H :Telescope help_tags<cr>
+nnoremap <leader>f :Telescope live_grep<cr>
+nnoremap <leader>k :Telescope keymaps<cr>
+nnoremap <leader>m :lua require'telescope.builtin'.man_pages(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <leader>c :lua require'telescope.builtin'.command_history(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <leader>L :Telescope loclist<cr>
+nnoremap <leader>q :Telescope quickfix<cr>
 
 " fzf-project mappings
 nnoremap <leader>p :FzfSwitchProject<cr>
@@ -73,3 +41,20 @@ nnoremap <silent> <leader>t :Fern . -drawer -reveal=% -toggle<cr>
 " vimux mappings
 nnoremap <silent> <leader>v :call ToggleVimux()<cr>
 nnoremap <silent> <leader>V :VimuxPromptCommand<cr>
+
+" nvim-compe
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+" cancel using C-c, but stay in insert mode
+inoremap <silent><expr> <C-c>     compe#close('<C-e>')
+
+function s:init_fern()
+    nnoremap <buffer> <C-h> :TmuxNavigateLeft<CR>
+    nnoremap <buffer> <C-j> :TmuxNavigateDown<CR>
+    nnoremap <buffer> <C-k> :TmuxNavigateUp<CR>
+    nnoremap <buffer> <C-l> :TmuxNavigateRight<CR>
+endfunction
+
+augroup fern-config
+    autocmd FileType fern call s:init_fern()
+augroup END
