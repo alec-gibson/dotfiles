@@ -19,15 +19,11 @@ nnoremap <silent> <leader>l :wincmd v \| wincmd l<CR>
 nnoremap <leader><space> :call SmartCompile()<cr>
 
 " fzf mappings
-nnoremap <leader>e :Telescope find_files<cr>
-nnoremap <leader>b :Telescope buffers<cr>
-nnoremap <leader>H :Telescope help_tags<cr>
-nnoremap <leader>f :Telescope live_grep<cr>
-nnoremap <leader>k :Telescope keymaps<cr>
-nnoremap <leader>m :lua require'telescope.builtin'.man_pages(require('telescope.themes').get_dropdown({}))<cr>
-nnoremap <leader>c :lua require'telescope.builtin'.command_history(require('telescope.themes').get_dropdown({}))<cr>
-nnoremap <leader>L :Telescope loclist<cr>
-nnoremap <leader>q :Telescope quickfix<cr>
+nnoremap <leader>e :call OpenFile()<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>H :Helptags<cr>
+nnoremap <leader>f :RG<cr>
+nnoremap <leader>d :LspDiagnostics 0<cr>
 
 " fzf-project mappings
 nnoremap <leader>p :FzfSwitchProject<cr>

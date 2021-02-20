@@ -12,7 +12,6 @@ local on_attach = function(_, bufnr)
 		vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
 		vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>R', '<Cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>', opts)
 		vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>d', '<Cmd> lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 		vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>o', '<Cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
 end
 

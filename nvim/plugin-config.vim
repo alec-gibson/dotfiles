@@ -37,7 +37,13 @@ let g:lightline = {
 
 " disable vim-go :GoDef short cut (gd)
 " this is handled by LanguageClient [LC]
-" let g:go_def_mapping_enabled = 0
+let g:go_def_mapping_enabled = 0
+
+let g:fzf_layout = { 'down': '~40%' }
+let g:fzfSwitchProjectWorkspaces = [ '~/git' ]
+let g:fzfSwitchProjectProjectDepth = -1
+let g:fzfSwitchProjectGitInitBehavior = 'none'
+let g:fzfSwitchProjectAlwaysChooseFile = 0
 
 let g:UltiSnipsExpandTrigger = '<C-h>'
 let g:UltiSnipsJumpForwardTrigger="<c-h>"
@@ -69,3 +75,5 @@ let g:compe.source = {
 			\ 'snippets_nvim': v:false,
 			\ 'treesitter': v:true
 			\ }
+
+lua require('lspfuzzy').setup {}

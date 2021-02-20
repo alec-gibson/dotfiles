@@ -22,8 +22,9 @@ Plug 'mbbill/undotree'
 Plug 'lervag/vimtex'							" NOTE: next time you use latex, setup the texlab language server
 Plug 'vimwiki/vimwiki'
 Plug 'dkarter/bullets.vim'
-" Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
 Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'hashivim/vim-hashicorp-tools'
 
 Plug 'nvim-treesitter/nvim-treesitter' , {'do': ':TSUpdate'}
 
@@ -41,10 +42,9 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'anott03/nvim-lspinstall'
 
-" TODO: create fzf-project replacement with telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'benwainwright/fzf-project'
+Plug 'ojroques/nvim-lspfuzzy'
 
 call plug#end()

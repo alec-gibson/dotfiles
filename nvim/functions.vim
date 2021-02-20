@@ -43,3 +43,13 @@ function! OpenLink()
 	call jobstart('open '..file, {'detach': v:true})
     endif
 endfunction
+
+" execute :GFiles if in git repo, and :Files otherwise
+function! OpenFile()
+  let gitDir = FugitiveGitDir()
+  if gitDir == ''
+    Files
+  else
+    GFiles
+  endif
+endfunction
