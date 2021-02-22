@@ -15,6 +15,8 @@ Plug 'benmills/vimux' 							" run commands in tmux splits
 Plug 'benmills/vimux-golang' 						" run golang tests intmux splits
 
 Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/sonokai'
+
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim' 						" focused reading view
 Plug 'ryanoasis/vim-devicons'
@@ -27,6 +29,7 @@ Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'hashivim/vim-hashicorp-tools'
 
 Plug 'nvim-treesitter/nvim-treesitter' , {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'

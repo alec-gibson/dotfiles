@@ -27,7 +27,18 @@ blue="#83a598"
 
 PS1="[%F{$aqua}%n%f@%F{$orange}%m %F{$blue}%~%f] "
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/alec/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/alec/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/alec/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/alec/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
+
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 source $HOME/.aliases.zsh
 source $HOME/.vars.zsh
+source $HOME/.secrets.zsh
+source $HOME/git/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh

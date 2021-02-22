@@ -1,4 +1,6 @@
 alias ls="lsd"
 alias l="ls -la"
 alias sudo="sudo "
-alias pacman="sudo pacman"
+alias pn="sudo pacman"
+alias mt="neomutt"
+alias rexsrc="cd /home/alec/go/src/github.com/root-of-a-tree/remote_exec_bot"

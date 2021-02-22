@@ -1,9 +1,11 @@
-" colours
-" Set contrast.
-" This configuration option should be placed before `colorscheme gruvbox-material`.
-" Available values: 'hard', 'medium'(default), 'soft'
-let g:gruvbox_material_background = 'hard'
-colorscheme gruvbox-material
+" low contrast colorscheme
+" let g:gruvbox_material_transparent_background = 1
+" let g:gruvbox_material_background = 'hard'
+" colorscheme gruvbox-material
+
+" high contrast colorscheme
+let g:sonokai_transparent_background = 1
+colorscheme sonokai
 
 " icons in fern
 let g:fern#renderer = "nerdfont"

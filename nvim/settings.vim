@@ -64,3 +64,7 @@ set background=dark
 let &t_ut=''
 
 command! -nargs=+ Grep execute 'silent grep! <args>' | copen
+
+" experimental: treesitter folding
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()

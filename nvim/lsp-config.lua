@@ -19,7 +19,7 @@ end
 -- sudo npm install -g vscode-json-languageserver
 -- sudo npm install -g vim-language-server
 -- for jdtls: https://github.com/mfussenegger/nvim-jdtls
-local servers = {'gopls', 'solargraph', 'jsonls', 'vimls'}
+local servers = {'gopls', 'solargraph', 'jsonls', 'vimls', 'clangd'}
 for _, lsp in ipairs(servers) do
 		lspconfig[lsp].setup {
 				on_attach = on_attach,

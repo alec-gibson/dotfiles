@@ -6,6 +6,8 @@ export LESS_TERMCAP_so=$'\e[01;44;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[01;32m'
 
+export BAT_THEME="gruvbox"
+
 export EDITOR='/usr/bin/nvim'
 export VISUAL='/usr/bin/alacritty -e /usr/bin/nvim'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --no-ignore --follow --glob "!.git/*"'
