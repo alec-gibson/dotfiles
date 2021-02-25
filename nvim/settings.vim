@@ -5,13 +5,14 @@ set shortmess+=c " don't give ins-completion-menu messages.
 set signcolumn=yes " always show signcolumns
 set completeopt=menu,menuone,noselect
 set belloff+=ctrlg
+set shell=bash
 
 set history=500                                                     " number of lines of history remembered
 set lazyredraw                                                      " don't redraw during macro application
 set showmatch                                                       " show matching brackets
 set si                                                              " smart indent
 set wrap                                                            " wrap lines
-set number relativenumber                                           " line numbers (hybrid)
+" set number relativenumber                                           " line numbers (hybrid)
 set mouse=a                                                         " enable mouse (sometimes just easier)
 set wildignore=*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store   " ignored files in wildmenu
 set nofoldenable                                                    " disable folding
@@ -21,7 +22,7 @@ set tabstop=4                                                       " tab width
 set cursorline 							    " highlight current line
 set nrformats= 							    " make C-x and C-a treat numbers with leading zeroes as decimal
 set conceallevel=1
-set grepprg=rg\ --vimgrep
+set grepprg=rg\ --vimgrep\ --hidden
 set noshowmode 							    " don't need to show mode because of lightline
 
 " search settings

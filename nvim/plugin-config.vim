@@ -16,8 +16,10 @@ let g:vimtex_view_method = 'zathura'
 let g:tex_flavor = 'latex'
 let g:vimtex_latexmk = 'nvr'
 
+" vim-dispatch config
+let g:dispatch_no_maps = 1
+
 " vimwiki location
-let g:vimwiki_list = [{ 'path': '~/geekserver/documents/vimwiki', 'path_html': '~/geekserver/documents/vimwiki' }]
 let g:vimwiki_global_ext = 0 " don't enable vimwiki outside the configured directories
 
 " simple aesthetic statusline
@@ -42,7 +44,6 @@ let g:lightline = {
 let g:go_def_mapping_enabled = 0
 
 let g:fzf_layout = { 'down': '~40%' }
-let g:fzfSwitchProjectWorkspaces = [ '~/git' ]
 let g:fzfSwitchProjectProjectDepth = -1
 let g:fzfSwitchProjectGitInitBehavior = 'none'
 let g:fzfSwitchProjectAlwaysChooseFile = 0

@@ -9,10 +9,11 @@ Plug 'tpope/vim-eunuch' 						" unix file commands
 Plug 'tpope/vim-commentary' 						" comment lines
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth' 						" automatically detect indent
+Plug 'tpope/vim-dispatch'
 
 Plug 'christoomey/vim-tmux-navigator' 					" seamless interop with tmux splits
-Plug 'benmills/vimux' 							" run commands in tmux splits
-Plug 'benmills/vimux-golang' 						" run golang tests intmux splits
+" Plug 'benmills/vimux' 							" run commands in tmux splits
+" Plug 'benmills/vimux-golang' 						" run golang tests intmux splits
 
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/sonokai'
@@ -49,5 +50,33 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'benwainwright/fzf-project'
 Plug 'ojroques/nvim-lspfuzzy'
+
+" switch to using init.lua
+
+" check out lervag/wiki.vim
+
+" check out coding in Fennel
+"
+" Olical Blog Posts:
+" https://oli.me.uk/neovim-configuration-and-plugins-in-fennel-lisp/
+" https://oli.me.uk/conversational-software-development/
+"
+" Olical YouTube Channel:
+" https://www.youtube.com/user/OliverCaldwell
+"
+" Specifically His Vimconf Talk:
+" https://www.youtube.com/watch?v=RU28xy9JXxs&list=PLcTu2VkAIIWzD2kicFNHN2c35XQCeZdsv&index=6
+"
+" Plugins:
+" Olical/conjure
+" Olical/aniseed
+" guns/vim-sexp
+" tpope/vim-sexp-mappings-for-regular-people
+"
+" Learn Lua:
+" https://github.com/nanotee/nvim-lua-guide
+"
+" MAYBE Look Into Clojure Down The Road:
+" https://liquidz.github.io/vim-iced/
 
 call plug#end()
