@@ -11,6 +11,11 @@ nnoremap <C-p> :cprevious<cr>
 nnoremap <leader><space> :call SmartCompile()<cr>
 nnoremap <C-Space> :Dispatch<cr>
 
+nnoremap <M-j> ddp
+nnoremap <M-k> ddkP
+vnoremap <M-j> :m '>+1<cr>gv
+vnoremap <M-k> :m '<-2<cr>gv
+
 " fzf
 nnoremap <leader>e :Files<cr>
 nnoremap <leader>b :Buffers<cr>

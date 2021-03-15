@@ -1,15 +1,13 @@
 local lspconfig = require('lspconfig')
-local buf_set_keymap = vim.api.nvim_buf_set_keymap
 
+-- installed gopls through vim-go
 -- gem install --user-install solargraph
 -- sudo npm install -g vscode-json-languageserver
 -- sudo npm install -g vim-language-server
--- for jdtls: https://github.com/mfussenegger/nvim-jdtls
+-- installed clangd through package manager
 local servers = {'gopls', 'solargraph', 'jsonls', 'vimls', 'clangd'}
 for _, lsp in ipairs(servers) do
-		lspconfig[lsp].setup {
-				on_attach = on_attach,
-		}
+  lspconfig[lsp].setup{}
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

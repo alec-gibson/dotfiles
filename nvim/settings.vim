@@ -2,7 +2,7 @@ set hidden " if hidden is not set, TextEdit might fail.
 set cmdheight=2 " Better display for messages
 set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI
 set shortmess+=c " don't give ins-completion-menu messages.
-set signcolumn=yes " always show signcolumns
+" set signcolumn=yes " always show signcolumns
 set completeopt=menu,menuone,noselect
 set belloff+=ctrlg
 set shell=bash
@@ -54,12 +54,6 @@ let maplocalleader = ","
 " netrw with no banner
 let g:netrw_banner = 0
 let g:netrw_altv = 1
-
-" theme options
-if has('termguicolors')
-    set termguicolors
-endif
-set background=dark
 
 " fix background color erase bug with vim
 let &t_ut=''

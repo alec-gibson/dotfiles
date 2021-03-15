@@ -12,11 +12,11 @@ Plug 'tpope/vim-sleuth' 						" automatically detect indent
 Plug 'tpope/vim-dispatch'
 
 Plug 'christoomey/vim-tmux-navigator' 					" seamless interop with tmux splits
-" Plug 'benmills/vimux' 							" run commands in tmux splits
-" Plug 'benmills/vimux-golang' 						" run golang tests intmux splits
 
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/sonokai'
+Plug 'lifepillar/vim-solarized8'
+Plug 'lifepillar/vim-gruvbox8'
 
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim' 						" focused reading view
@@ -68,10 +68,14 @@ Plug 'ojroques/nvim-lspfuzzy'
 " https://www.youtube.com/watch?v=RU28xy9JXxs&list=PLcTu2VkAIIWzD2kicFNHN2c35XQCeZdsv&index=6
 "
 " Plugins:
-" Olical/conjure
-" Olical/aniseed
-" guns/vim-sexp
-" tpope/vim-sexp-mappings-for-regular-people
+Plug 'Olical/conjure'
+Plug 'Olical/aniseed'
+Plug 'bakpakin/fennel.vim'
+
+" Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 "
 " Learn Lua:
 " https://github.com/nanotee/nvim-lua-guide
