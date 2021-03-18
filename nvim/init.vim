@@ -20,4 +20,6 @@ exec "luafile " . stdpath("config") . "/lsp-config.lua"
 exec "source " . stdpath("config") . "/abbreviations.vim"
 exec "source " . stdpath("config") . "/keymappings.vim"
 exec "source " . stdpath("config") . "/autocommands.vim"
+exec "luafile " . stdpath("config") . "/general.lua"
 exec "source " . stdpath("config") . "/local-config.vim"
+

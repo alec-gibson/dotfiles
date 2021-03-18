@@ -50,18 +50,5 @@ nnoremap <silent> <leader>j :wincmd s \| wincmd j<CR>
 nnoremap <silent> <leader>k :wincmd s<CR>
 nnoremap <silent> <leader>l :wincmd v \| wincmd l<CR>
 
-" vim-tmux-navigator
-function s:init_fern()
-    nnoremap <buffer> <C-h> :TmuxNavigateLeft<CR>
-    nnoremap <buffer> <C-j> :TmuxNavigateDown<CR>
-    nnoremap <buffer> <C-k> :TmuxNavigateUp<CR>
-    nnoremap <buffer> <C-l> :TmuxNavigateRight<CR>
-endfunction
-
-" fern
-augroup fern-config
-    autocmd FileType fern call s:init_fern()
-augroup END
-
-" fern
-nnoremap <silent> <leader>t :Fern . -drawer -reveal=% -toggle<cr>
+" tree view
+nnoremap <silent> <leader>t :NvimTreeToggle<cr>

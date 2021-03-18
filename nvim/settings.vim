@@ -2,7 +2,7 @@ set hidden " if hidden is not set, TextEdit might fail.
 set cmdheight=2 " Better display for messages
 set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI
 set shortmess+=c " don't give ins-completion-menu messages.
-" set signcolumn=yes " always show signcolumns
+set signcolumn=yes " always show signcolumns
 set completeopt=menu,menuone,noselect
 set belloff+=ctrlg
 set shell=bash
@@ -12,7 +12,7 @@ set lazyredraw                                                      " don't redr
 set showmatch                                                       " show matching brackets
 set si                                                              " smart indent
 set wrap                                                            " wrap lines
-" set number relativenumber                                           " line numbers (hybrid)
+set number relativenumber                                           " line numbers (hybrid)
 set mouse=a                                                         " enable mouse (sometimes just easier)
 set wildignore=*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store   " ignored files in wildmenu
 set nofoldenable                                                    " disable folding

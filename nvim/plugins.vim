@@ -1,9 +1,7 @@
 call plug#begin('~/.config/vim-plug/plugins')
 
-Plug 'lambdalisue/fern.vim' 						" fast file tree viewer / file manager
-Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/fern-hijack.vim'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-web-devicons'
 
 Plug 'tpope/vim-eunuch' 						" unix file commands
 Plug 'tpope/vim-commentary' 						" comment lines
@@ -45,43 +43,23 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'anott03/nvim-lspinstall'
+Plug 'ray-x/lsp_signature.nvim'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'benwainwright/fzf-project'
 Plug 'ojroques/nvim-lspfuzzy'
 
-" switch to using init.lua
+" TODO: check out lervag/wiki.vim
 
-" check out lervag/wiki.vim
-
-" check out coding in Fennel
-"
-" Olical Blog Posts:
-" https://oli.me.uk/neovim-configuration-and-plugins-in-fennel-lisp/
-" https://oli.me.uk/conversational-software-development/
-"
-" Olical YouTube Channel:
-" https://www.youtube.com/user/OliverCaldwell
-"
-" Specifically His Vimconf Talk:
-" https://www.youtube.com/watch?v=RU28xy9JXxs&list=PLcTu2VkAIIWzD2kicFNHN2c35XQCeZdsv&index=6
-"
 " Plugins:
 Plug 'Olical/conjure'
 Plug 'Olical/aniseed'
 Plug 'bakpakin/fennel.vim'
 Plug 'tami5/compe-conjure'
 
-" Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 "
-" Learn Lua:
-" https://github.com/nanotee/nvim-lua-guide
-"
-" MAYBE Look Into Clojure Down The Road:
-" https://liquidz.github.io/vim-iced/
-
 call plug#end()

@@ -17,10 +17,6 @@ colorscheme gruvbox-material
 " colorscheme solarized8
 " colorscheme gruvbox8
 
-" icons in fern
-let g:fern#renderer = "nerdfont"
-let g:fern#drawer_width = 50
-
 " vimtex config
 let g:vimtex_view_method = 'zathura'
 let g:tex_flavor = 'latex'
@@ -94,6 +90,10 @@ let g:compe.source = {
 let g:conjure#extract#tree_sitter#enabled=v:true
 
 let g:sexp_filetypes="clojure,scheme,lisp,timl,fennel,janet"
-" let g:sexp_enable_insert_mode_mappings = 0
+
+let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
+let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
+let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
+" let g:nvim_tree_disable_keybindings = 1
 
 lua require('lspfuzzy').setup {}

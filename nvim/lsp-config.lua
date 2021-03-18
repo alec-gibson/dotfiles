@@ -1,3 +1,4 @@
+require'lsp_signature'.on_attach()
 local lspconfig = require('lspconfig')
 
 -- installed gopls through vim-go
