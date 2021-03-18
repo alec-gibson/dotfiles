@@ -3,6 +3,7 @@ if has('termguicolors')
     set termguicolors
 endif
 set background=dark
+" set background=light
 
 " low contrast colorscheme
 let g:gruvbox_material_transparent_background = 1
@@ -14,6 +15,7 @@ colorscheme gruvbox-material
 " colorscheme sonokai
 
 " colorscheme solarized8
+" colorscheme gruvbox8
 
 " icons in fern
 let g:fern#renderer = "nerdfont"
@@ -74,7 +76,8 @@ let g:compe.max_kind_width = 100
 let g:compe.max_menu_width = 100
 
 let g:compe.source = {
-			\ 'omni': v:true,
+			\ 'omni': v:false,
+			\ 'conjure': v:true,
 			\ 'path': v:true,
 			\ 'buffer': v:true,
 			\ 'calc': v:true,
@@ -87,6 +90,8 @@ let g:compe.source = {
 			\ 'snippets_nvim': v:false,
 			\ 'treesitter': v:true
 			\ }
+
+let g:conjure#extract#tree_sitter#enabled=v:true
 
 let g:sexp_filetypes="clojure,scheme,lisp,timl,fennel,janet"
 " let g:sexp_enable_insert_mode_mappings = 0

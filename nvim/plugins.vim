@@ -71,6 +71,7 @@ Plug 'ojroques/nvim-lspfuzzy'
 Plug 'Olical/conjure'
 Plug 'Olical/aniseed'
 Plug 'bakpakin/fennel.vim'
+Plug 'tami5/compe-conjure'
 
 " Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-sexp'
