@@ -54,10 +54,6 @@ let g:fzfSwitchProjectProjectDepth = -1
 let g:fzfSwitchProjectGitInitBehavior = 'none'
 let g:fzfSwitchProjectAlwaysChooseFile = 0
 
-let g:UltiSnipsExpandTrigger = '<C-h>'
-let g:UltiSnipsJumpForwardTrigger="<c-h>"
-let g:UltiSnipsJumpBackwardTrigger="<c-g>"
-
 let g:compe = {}
 let g:compe.enabled = v:true
 let g:compe.autocomplete = v:true
@@ -78,13 +74,13 @@ let g:compe.source = {
 			\ 'buffer': v:true,
 			\ 'calc': v:true,
 			\ 'vsnip': v:false,
-			\ 'ultisnips': v:true,
+			\ 'ultisnips': v:false,
 			\ 'nvim_lsp': v:true,
 			\ 'nvim_lua': v:true,
 			\ 'spell': v:true,
 			\ 'tags': v:true,
-			\ 'snippets_nvim': v:false,
-			\ 'treesitter': v:true
+			\ 'snippets_nvim': v:true,
+			\ 'treesitter': v:false
 			\ }
 
 let g:conjure#extract#tree_sitter#enabled=v:true

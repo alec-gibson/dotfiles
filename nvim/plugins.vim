@@ -30,9 +30,6 @@ Plug 'hashivim/vim-hashicorp-tools'
 Plug 'nvim-treesitter/nvim-treesitter' , {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
 Plug 'kana/vim-textobj-user'
 Plug 'thinca/vim-textobj-between'
 Plug 'rhysd/vim-textobj-anyblock'
@@ -40,10 +37,11 @@ Plug 'rhysd/vim-textobj-anyblock'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc'
 
+Plug 'norcalli/snippets.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
-Plug 'anott03/nvim-lspinstall'
 Plug 'ray-x/lsp_signature.nvim'
+Plug 'onsails/lspkind-nvim'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'

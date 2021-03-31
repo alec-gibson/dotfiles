@@ -22,6 +22,8 @@ nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>H :Helptags<cr>
 nnoremap <leader>f :RG<cr>
 nnoremap <leader>d :LspDiagnostics 0<cr>
+" m for man
+nnoremap <leader>m :Apropos<cr>
 
 " fzf-project
 nnoremap <leader>p :FzfSwitchProject<cr>
@@ -33,6 +35,12 @@ nnoremap <leader>g :G<cr>
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <Tab>      compe#confirm('<CR>')
 inoremap <silent><expr> <C-c>     compe#close('<C-e>')
+
+" snippets
+" either expand the current snippet at the word or try to jump to the next position for the snippet.
+inoremap <c-j> <cmd>lua return require'snippets'.expand_or_advance(1)<CR>
+" jump backwards to the previous field. If you jump before the first field, it will cancel the snippet.
+inoremap <c-k> <cmd>lua return require'snippets'.advance_snippet(-1)<CR>
 
 " lsp
 nnoremap <silent> gd <Cmd>lua vim.lsp.buf.definition()<CR>
