@@ -56,8 +56,11 @@ Plug 'Olical/aniseed'
 Plug 'bakpakin/fennel.vim'
 Plug 'tami5/compe-conjure'
 
-Plug 'guns/vim-sexp'
+" Plug 'guns/vim-sexp'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-"
+" Plug 'tpope/vim-surround'
+
+" Common Lisp development
+Plug 'kovisoft/slimv'
+
 call plug#end()

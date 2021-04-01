@@ -68,7 +68,7 @@ let g:compe.max_kind_width = 100
 let g:compe.max_menu_width = 100
 
 let g:compe.source = {
-			\ 'omni': v:false,
+			\ 'omni': v:true,
 			\ 'conjure': v:true,
 			\ 'path': v:true,
 			\ 'buffer': v:true,
@@ -91,5 +91,11 @@ let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last
 let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
 let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
 " let g:nvim_tree_disable_keybindings = 1
+
+let g:slimv_balloon = v:true
+let g:slimv_browser_cmd = 'firefox'
+let g:slimv_clhs_root = 'http://www.lispworks.com/documentation/HyperSpec/Front/'
+let g:slimv_ctags = 'ctags'
+let g:slimv_lisp = '/usr/bin/sbcl'
 
 lua require('lspfuzzy').setup {}
