@@ -43,3 +43,13 @@ function! OpenLink()
 	call jobstart('open '..file, {'detach': v:true})
     endif
 endfunction
+
+" evaluate lisp form, then insert result in a comment at the end of the line
+function! EvalAndInsertSingleLine()
+  redir! > /tmp/lispeval
+  call SlimvEvalExp()
+  redir END
+  call system("sed -i '/^$/d' /tmp/lispeval")
+  read /tmp/lispeval
+  exe "normal kA ;\<ESC>JF)"
+endfunction

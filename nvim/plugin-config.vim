@@ -93,9 +93,12 @@ let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent marke
 " let g:nvim_tree_disable_keybindings = 1
 
 let g:slimv_balloon = v:true
-let g:slimv_browser_cmd = 'firefox'
-let g:slimv_clhs_root = 'http://www.lispworks.com/documentation/HyperSpec/Front/'
-let g:slimv_ctags = 'ctags'
+" let g:slimv_browser_cmd = "tmux split-window -h w3m"
+let g:slimv_browser_cmd = "tmux new-window w3m"
+let g:slimv_clhs_root = 'http://www.lispworks.com/documentation/HyperSpec/Body/'
+let g:slimv_ctags = '/usr/bin/ctags -Ra --language-force=lisp .'
 let g:slimv_lisp = '/usr/bin/sbcl'
+let g:slimv_repl_split_size = 10
+let g:slimv_keybindings = 2
 
 lua require('lspfuzzy').setup {}
