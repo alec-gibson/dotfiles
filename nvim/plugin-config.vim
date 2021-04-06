@@ -99,6 +99,13 @@ let g:slimv_clhs_root = 'http://www.lispworks.com/documentation/HyperSpec/Body/'
 let g:slimv_ctags = '/usr/bin/ctags -Ra --language-force=lisp .'
 let g:slimv_lisp = '/usr/bin/sbcl'
 let g:slimv_repl_split_size = 10
-let g:slimv_keybindings = 2
+let g:slimv_keybindings = 1
+let g:slimv_echolines = 1
+let g:slimv_impl = 'sbcl'
+let g:slimv_repl_name = 'REPL'
+let g:slimv_repl_split = 2 " horizontal split below
+
+" set the default browser command to be used by vim-go
+let g:go_play_browser_command = 'tmux new-window w3m %URL%'
 
 lua require('lspfuzzy').setup {}
