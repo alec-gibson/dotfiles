@@ -1,4 +1,3 @@
-require'lsp_signature'.on_attach()
 local lspconfig = require('lspconfig')
 
 -- installed gopls through vim-go
@@ -7,8 +6,19 @@ local lspconfig = require('lspconfig')
 -- sudo npm install -g vim-language-server
 -- installed clangd through package manager
 local servers = {'gopls', 'solargraph', 'jsonls', 'vimls', 'clangd'}
+local sig_cfg = {
+  bind = true, -- This is mandatory, otherwise border config won't get registered.
+               -- If you want to hook lspsaga or other signature handler, pls set to false
+  doc_lines = 10, -- only show one line of comment set to 0 if you do not want API comments be shown
+  decorator = {"***", "***"},  -- or decorator = {"***", "***"}  decorator = {"**", "**"} see markdown help
+  hint_enable = false, -- virtual hint disable
+}
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup{}
+  lspconfig[lsp].setup{
+    on_attach = function()
+      require('lsp_signature').on_attach(sig_cfg)
+    end
+  }
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
