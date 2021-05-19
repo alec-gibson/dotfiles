@@ -8,20 +8,14 @@ Plug 'tpope/vim-commentary' 						" comment lines
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth' 						" automatically detect indent
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-repeat'
 
 Plug 'christoomey/vim-tmux-navigator' 					" seamless interop with tmux splits
-
 Plug 'sainnhe/gruvbox-material'
-Plug 'sainnhe/sonokai'
-Plug 'lifepillar/vim-solarized8'
-Plug 'lifepillar/vim-gruvbox8'
 
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/goyo.vim' 						" focused reading view
-Plug 'ryanoasis/vim-devicons'
 Plug 'mbbill/undotree'
-Plug 'lervag/vimtex'							" NOTE: next time you use latex, setup the texlab language server
-Plug 'vimwiki/vimwiki'
+Plug 'lervag/vimtex'							" NOTE: next time you use latex, look into the texlab language server
 Plug 'dkarter/bullets.vim'
 Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
 Plug 'martinda/Jenkinsfile-vim-syntax'
@@ -50,17 +44,13 @@ Plug 'ojroques/nvim-lspfuzzy'
 
 " TODO: check out lervag/wiki.vim
 
-" Plugins:
+" Fennel
 Plug 'Olical/conjure'
 Plug 'Olical/aniseed'
 Plug 'bakpakin/fennel.vim'
 Plug 'tami5/compe-conjure'
 
-" Plug 'guns/vim-sexp'
-Plug 'tpope/vim-repeat'
-" Plug 'tpope/vim-surround'
-
-" Common Lisp development
+" Common Lisp
 Plug 'kovisoft/slimv'
 
 call plug#end()

@@ -3,19 +3,11 @@ if has('termguicolors')
     set termguicolors
 endif
 set background=dark
-" set background=light
 
 " low contrast colorscheme
 let g:gruvbox_material_transparent_background = 1
 let g:gruvbox_material_background = 'hard'
 colorscheme gruvbox-material
-
-" high contrast colorscheme
-" let g:sonokai_transparent_background = 1
-" colorscheme sonokai
-
-" colorscheme solarized8
-" colorscheme gruvbox8
 
 " vimtex config
 let g:vimtex_view_method = 'zathura'

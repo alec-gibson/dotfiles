@@ -2,7 +2,7 @@ set hidden " if hidden is not set, TextEdit might fail.
 set cmdheight=2 " Better display for messages
 set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI
 set shortmess+=c " don't give ins-completion-menu messages.
-set signcolumn=yes " always show signcolumns
+set signcolumn=number " show signs in the number column
 set completeopt=menu,menuone,noselect
 set belloff+=ctrlg
 set shell=bash
@@ -61,5 +61,5 @@ let &t_ut=''
 command! -nargs=+ Grep execute 'silent grep! <args>' | copen
 
 " experimental: treesitter folding
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
