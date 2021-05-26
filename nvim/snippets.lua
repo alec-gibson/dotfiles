@@ -1,4 +1,3 @@
--- And now for some examples of snippets I actually use.
 local snippets = require'snippets'
 local U = require'snippets.utils'
 

@@ -17,9 +17,6 @@ let g:vimtex_latexmk = 'nvr'
 " vim-dispatch config
 let g:dispatch_no_maps = 1
 
-" vimwiki location
-let g:vimwiki_global_ext = 0 " don't enable vimwiki outside the configured directories
-
 " simple aesthetic statusline
 let g:lightline = {
 	    \ 'active': {
@@ -32,7 +29,13 @@ let g:lightline = {
 	    \ },
 	    \ 'tabline': {
 	    \ 	'left': [ [ 'tabs' ] ],
-	    \ 	'right': [ [ 'close' ] ]
+	    \ },
+	    \ 'tab': {
+		\ 'active': [ 'tabnum', 'filename', 'modified' ],
+		\ 'inactive': [ 'tabnum', 'filename', 'modified' ]
+	    \ },
+	    \ 'tab_component_function': {
+	    \   'filename': 'LightlineTabFilename',
 	    \ },
 	    \ 'colorscheme': 'gruvbox_material',
 	    \ }
@@ -78,8 +81,6 @@ let g:compe.source = {
 
 let g:conjure#extract#tree_sitter#enabled=v:true
 
-let g:sexp_filetypes="clojure,scheme,lisp,timl,fennel,janet"
-
 let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
 let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
 let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
@@ -100,5 +101,3 @@ let g:slimv_repl_split = 2 " horizontal split below
 
 " set the default browser command to be used by vim-go
 let g:go_play_browser_command = 'tmux new-window w3m %URL%'
-
-lua require('lspfuzzy').setup {}

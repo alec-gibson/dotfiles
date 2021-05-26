@@ -1,7 +1,7 @@
 call plug#begin('~/.config/vim-plug/plugins')
 
-Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 
 Plug 'tpope/vim-eunuch' 						" unix file commands
 Plug 'tpope/vim-commentary' 						" comment lines
@@ -18,15 +18,10 @@ Plug 'mbbill/undotree'
 Plug 'lervag/vimtex'							" NOTE: next time you use latex, look into the texlab language server
 Plug 'dkarter/bullets.vim'
 Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
-Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'hashivim/vim-hashicorp-tools'
 
 Plug 'nvim-treesitter/nvim-treesitter' , {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-
-Plug 'kana/vim-textobj-user'
-Plug 'thinca/vim-textobj-between'
-Plug 'rhysd/vim-textobj-anyblock'
 
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc'

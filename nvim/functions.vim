@@ -12,25 +12,27 @@ function SmartCompile()
     endif
 endfunction
 
-" Simple - written myself
-" toggle whether the tmux split is open or not
-function ToggleVimux()
-  if exists("g:VimuxRunnerIndex")
-      call VimuxCloseRunner()
-  else
-      call VimuxOpenRunner()
-  endif
-endfunction
-
 " Show full path to file. If in Git dir, show path relative to the Git root.
 " Taken from: https://github.com/itchyny/lightline.vim/issues/293
+" Added custom logic for including icons
 function! LightlineFilename()
+    let fname = expand('%')
     let root = fnamemodify(fnamemodify(get(b:, 'git_dir'), ':h'), ':h')
     let path = expand('%:p')
     if path[:len(root)-1] ==# root
-	return path[len(root)+1:]
+	let fname = path[len(root)+1:]
     endif
-    return expand('%')
+    let fname = fname !=# '' ? fname : '[No Name]'
+    let ext = fnamemodify(fname, ':e')
+    let icon = luaeval("require'nvim-web-devicons'.get_icon(\"" . fname . "\", \"" . ext . "\", { default = true })")
+    return icon . ' ' . fname
+endfunction
+
+function! LightlineTabFilename(n)
+    let fname = lightline#tab#filename(a:n)
+    let ext = fnamemodify(fname, ':e')
+    let icon = luaeval("require'nvim-web-devicons'.get_icon(\"" . fname . "\", \"" . ext . "\", { default = true })")
+    return icon . ' ' . fname
 endfunction
 
 " Stole this off reddit.
