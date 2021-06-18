@@ -1,13 +1,34 @@
-#! /bin/sh
-~/.fehbg &
+#! /bin/bash
+my_laptop_external_monitor=$(xrandr --query | grep 'HDMI-2')
+if [[ $my_laptop_external_monitor = *connected* && ! $my_laptop_external_monitor = *disconnected* ]]; then
+	bspc monitor eDP-1 -d 1 2 3 4 5
+	bspc monitor HDMI-2 -d 6 7 8 9 0
+else
+	bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 0
+fi
+
+if test -z "$(setxkbmap -query | grep options:)"
+then
+	setxkbmap -option caps:swapescape
+fi
+
+if test -z "$(xset q | grep 'auto repeat delay:  350')"
+then
+	xset r rate 350 50
+fi
+
+sxhkd &
+/usr/lib/geoclue-2.0/demos/agent &
+
+/home/alec/scripts/autorandr
+~/.fehbg
 picom &
-setxkbmap -option caps:swapescape &
+
+/home/alec/scripts/launch-polybar
 nm-applet &
 blueman-applet &
-sxhkd &
-polybar default &
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+dunst &
 
 bspc config border_width         2
 bspc config window_gap           4
@@ -16,8 +37,9 @@ bspc config split_ratio          0.50
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
+bspc rule -a Emacs state=tiled
 bspc rule -a *:scratchpad sticky=on state=floating hidden=on
 while :
 do
-alacritty -d 120 50 --class scratchpad -e ~/scripts/scratch
+	alacritty --class scratchpad -e ~/scripts/scratch
 done

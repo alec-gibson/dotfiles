@@ -21,11 +21,11 @@ zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
 setopt COMPLETE_ALIASES
 
-aqua="#8ec07c"
-orange="#fe8019"
-blue="#83a598"
+green="#005500"
+purple="#770077"
+brown="#663311"
 
-PS1="[%F{$aqua}%n%f@%F{$orange}%m %F{$blue}%~%f] "
+PS1="[%F{$green}%n%f@%F{$purple}%m %F{$brown}%~%f] "
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/alec/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/alec/Downloads/google-cloud-sdk/path.zsh.inc'; fi
@@ -41,4 +41,3 @@ source /usr/share/fzf/completion.zsh
 source $HOME/.aliases.zsh
 source $HOME/.vars.zsh
 source $HOME/.secrets.zsh
-source $HOME/git/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh

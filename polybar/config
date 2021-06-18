@@ -28,23 +28,57 @@ white = ${xrdb:color15:#ebdbb2}
 background = ${xrdb:color256:#1d2021}
 foreground = ${xrdb:color257:#ebdbb2}
 
-[bar/default]
-;monitor = ${env:MONITOR:LVDS-1}
-;monitor = ${env:MONITOR:HDMI-1}
+[bar/default_external]
+monitor = HDMI-2
 enable-ipc = true
 width = 100%
 height = 24
-;offset-x = 1%
-;offset-y = 1%
-;radius = 6.0
 fixed-center = false
 bottom = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
-line-color = {$xrdb:red}
+border-size = 0
+border-color = ${colors.white}
+
+padding-left = 1
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = mono:pixelsize=11;1
+font-1 = Inconsolata Nerd Font:size=10;1
+font-2 = Noto Color Emoji:scale=12:style=Regular;2
+font-3 = Symbola:pixelsize=12;1
+
+
+; Other modules: xkeyboard filesystem xbacklight backlight-acpi cpu memory temperature powermenu weather eth mutt-wizard xwindow wlan
+modules-left = bspwm
+modules-center = mpd
+modules-right = volume mail date
+
+tray-position = right
+tray-padding = 0
+
+wm-restack = bspwm
+
+;override-redirect = true
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+[bar/default]
+monitor = eDP-1
+enable-ipc = true
+width = 100%
+height = 24
+fixed-center = false
+bottom = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
 
 border-size = 0
 border-color = ${colors.white}
@@ -64,7 +98,7 @@ font-3 = Symbola:pixelsize=10;1
 ; Other modules: xkeyboard filesystem xbacklight backlight-acpi cpu memory temperature powermenu weather eth mutt-wizard xwindow wlan
 modules-left = bspwm
 modules-center = mpd
-modules-right = volume battery date
+modules-right = volume mail battery nordvpn date
 
 tray-position = right
 tray-padding = 0
@@ -76,23 +110,23 @@ wm-restack = bspwm
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
 
-[module/mutt-wizard]
+[module/mail]
 
 type = custom/script
-exec = mailbox
+exec = ls /home/alec/.mail/mailbox/Inbox/new | wc -l
 interval = 5
-format-prefix = " "
-format-underline = ${colors.red}
+format-prefix = " "
+; format-underline = ${colors.red}
 
-click-left = $TERMINAL -e neomutt
-
+format-prefix-foreground = ${colors.gray}
+click-left = alacritty -e neomutt
 
 [module/weather]
 
 type = custom/script
 exec = weather
 interval = 5000
-;format-underline =
+; ;format-underline =
 
 [module/xwindow]
 type = internal/xwindow
@@ -105,15 +139,15 @@ blacklist-0 = num lock
 
 format-prefix = " "
 format-prefix-foreground = ${colors.gray}
-format-prefix-underline = ${colors.darkmagenta}
+; format-prefix-underline = ${colors.darkmagenta}
 
 label-layout = %layout%
-label-layout-underline = ${colors.darkmagenta}
+; label-layout-underline = ${colors.darkmagenta}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.darkmagenta}
-label-indicator-underline = ${colors.darkmagenta}
+; label-indicator-underline = ${colors.darkmagenta}
 
 [module/filesystem]
 type = internal/fs
@@ -122,7 +156,7 @@ interval = 25
 mount-0 = /
 mount-1 = /home
 
-label-mounted-underline = ${colors.cyan}
+; label-mounted-underline = ${colors.cyan}
 label-mounted = /: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.gray}
@@ -130,21 +164,22 @@ label-unmounted-foreground = ${colors.gray}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
+pin-workspaces = true
+label-focused = %name%
 label-focused-foreground = ${colors.black}
 label-focused-background = ${colors.blue}
-label-focused-underline= ${colors.yellow}
+; label-focused-underline= ${colors.yellow}
 label-focused-padding = 1
 
-label-occupied = %index%
-label-occupied-underline = ${colors.blue}
+label-occupied = %name%
+; label-occupied-underline = ${colors.blue}
 label-occupied-padding = 1
 
-label-urgent = %index%!
+label-urgent = %name%!
 label-urgent-background = ${colors.red}
 label-urgent-padding = 1
 
-label-empty = %index%
+label-empty = %name%
 label-empty-foreground = ${colors.lightgray}
 label-empty-padding = 1
 
@@ -165,7 +200,7 @@ label-mode-background = ${colors.darkyellow}
 label-focused = %index%
 label-focused-background = ${colors:black}
 ;label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
+; label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
@@ -175,7 +210,7 @@ label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
 label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
+; label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
@@ -223,7 +258,7 @@ type = internal/cpu
 interval = 2
 format-prefix = "🌡 "
 format-prefix-foreground = ${colors.gray}
-format-underline = ${colors.red}
+; format-underline = ${colors.red}
 label = %percentage%%
 
 [module/memory]
@@ -231,7 +266,7 @@ type = internal/memory
 interval = 2
 format-prefix = "🧠 "
 format-prefix-foreground = ${colors.gray}
-format-underline = ${colors.darkcyan}
+; format-underline = ${colors.darkcyan}
 label = %percentage_used%%
 
 [module/wlan]
@@ -240,12 +275,12 @@ interface = wlp4s0
 interval = 3.0
 
 format-connected = 直 <label-connected>
-format-connected-underline = ${colors.darkmagenta}
+; format-connected-underline = ${colors.darkmagenta}
 label-connected = %essid%
 
 ;format-disconnected =
 format-disconnected = <label-disconnected>
-format-disconnected-underline = ${self.format-connected-underline}
+; format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 label-disconnected = 睊no wifi
 label-disconnected-foreground = ${colors.gray}
@@ -263,15 +298,15 @@ type = internal/network
 interface = enp0s25
 interval = 3.0
 
-format-connected-underline = ${colors.darkgreen}
-;format-connected-underline = ${colors.green}
+; format-connected-underline = ${colors.darkgreen}
+; ;format-connected-underline = ${colors.green}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.gray}
 label-connected = %local_ip%
 
 ;format-disconnected =
 format-disconnected = <label-disconnected>
-format-disconnected-underline = ${self.format-connected-underline}
+; format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected =  %ifname%
 label-disconnected-foreground = ${colors.gray}
 
@@ -289,7 +324,7 @@ time = "%I:%M%p"
 
 format-prefix = " "
 format-prefix-foreground = ${colors.gray}
-format-underline = ${colors.blue}
+; format-underline = ${colors.blue}
 
 label = %date% %time%
 
@@ -340,28 +375,28 @@ full-at = 98
 
 ;format-charging = Charging... <label-charging>
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.darkyellow}
+; format-charging-underline = ${colors.darkyellow}
 
 ;format-discharging = <label-discharging>
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+; format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.gray}
-format-full-underline = ${self.format-charging-underline}
+; format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
 ramp-capacity-foreground = ${colors.gray}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
 animation-charging-foreground = ${colors.gray}
 animation-charging-framerate = 500
 
@@ -371,9 +406,9 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = ${colors.red}
+; format-underline = ${colors.red}
 format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+; format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
@@ -412,6 +447,11 @@ menu-2-0 = power off
 menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
+
+[module/nordvpn]
+type = custom/script
+exec = nordvpn status | awk '/Status:/ {printf " NordVPN: %s ",$4}; /Country:/ {printf "(%s)",$2}; END {print ""}'
+click-left = /home/alec/scripts/toggle-nordvpn.sh
 
 [settings]
 screenchange-reload = true

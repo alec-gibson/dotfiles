@@ -12,6 +12,7 @@ Plug 'tpope/vim-repeat'
 
 Plug 'christoomey/vim-tmux-navigator' 					" seamless interop with tmux splits
 Plug 'sainnhe/gruvbox-material'
+Plug 'ajgrf/parchment'
 
 Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
@@ -47,5 +48,7 @@ Plug 'tami5/compe-conjure'
 
 " Common Lisp
 Plug 'kovisoft/slimv'
+
+Plug 'edkolev/tmuxline.vim'
 
 call plug#end()

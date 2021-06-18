@@ -7,8 +7,8 @@ super + Return
 	alacritty -e tmux
 
 # program launcher
-super + d
-	dmenu_run
+super + {d,r}
+	{dmenu_run,/home/alec/scripts/run-script}
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -69,6 +69,10 @@ super + {_,shift + }c
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
+
+# swap monitors
+super + w
+	bspc monitor -f next
 
 # focus the last node/desktop
 #super + {grave,Tab}
@@ -148,14 +152,14 @@ XF86MonBrightness{Down,Up}
 #
 # application shortcuts
 #
-alt + {w,d,s,m,n,r}
-    {MOZ_X11_EGL=1 firefox,discord,spotify,alacritty -e ncmpcpp,alacritty -e nmtui,alacritty -e newsboat}
+alt + {w,d,s,m,n,r,b,e}
+    {MOZ_X11_EGL=1 firefox,discord,spotify,alacritty -e neomutt,alacritty -e nmtui,alacritty -e newsboat,blueman-manager,emacs}
 
 Print
-    scrot -s
-
-shift + Print
     scrot
+
+super + Print
+    scrot -s
 
 # scratchpad
 super + grave
