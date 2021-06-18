@@ -136,7 +136,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 7.0
+  size: 11.5
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -279,33 +279,93 @@ font:
 #       cyan:    '#8ec07c'
 #       white:   '#ebdbb2'
 
-# Colors (Gruvbox Material Dark Medium)
+# Colors (Gruvbox light)
+# colors:
+#   # Default colors
+#   primary:
+#     # hard contrast: background = '#f9f5d7'
+#     background: '#fbf1c7'
+#     # soft contrast: background = '#f2e5bc'
+#     foreground: '#3c3836'
+
+#   # Normal colors
+#   normal:
+#     black:   '#fbf1c7'
+#     red:     '#cc241d'
+#     green:   '#98971a'
+#     yellow:  '#d79921'
+#     blue:    '#458588'
+#     magenta: '#b16286'
+#     cyan:    '#689d6a'
+#     white:   '#7c6f64'
+
+#   # Bright colors
+#   bright:
+#     black:   '#928374'
+#     red:     '#9d0006'
+#     green:   '#79740e'
+#     yellow:  '#b57614'
+#     blue:    '#076678'
+#     magenta: '#8f3f71'
+#     cyan:    '#427b58'
+#     white:   '#3c3836'
+
+# Colors (parchment)
 colors:
   primary:
-    background: '#1d2021'
-    foreground: '#ebdbb2'
+    background: '#ffffea'
+    foreground: '#000000'
 
-    # Normal colors
-    normal:
-      black:   '#282828'
-      red:     '#cc241d'
-      green:   '#98971a'
-      yellow:  '#d79921'
-      blue:    '#458588'
-      magenta: '#b16286'
-      cyan:    '#689d6a'
-      white:   '#a89984'
+# This is the original blue, but I prefer it lighter for search highlights:
+# blue:    '#004488'
+  normal:
+    black:   '#000000'
+    red:     '#880000'
+    green:   '#005500'
+    yellow:  '#663311'
+    blue:    '#7ebaf7'
+    magenta: '#770077'
+    cyan:    '#007777'
+    white:   '#eeeecc'
 
-  # Bright colors
-    bright:
-      black:   '#928374'
-      red:     '#fb4934'
-      green:   '#b8bb26'
-      yellow:  '#fabd2f'
-      blue:    '#83a598'
-      magenta: '#d3869b'
-      cyan:    '#8ec07c'
-      white:   '#ebdbb2'
+  bright:
+    black:   '#eaeaea'
+    red:     '#ffeaea'
+    green:   '#eaffea'
+    yellow:  '#eeee9e'
+    blue:    '#cceeff'
+    magenta: '#ffeaff'
+    cyan:    '#eaffff'
+    white:   '#ffffea'
+
+
+# # Colors (Gruvbox Material Dark Medium)
+# colors:
+#   primary:
+#     background: '#1d2021'
+#     foreground: '#ebdbb2'
+
+#     # Normal colors
+#     normal:
+#       black:   '#282828'
+#       red:     '#cc241d'
+#       green:   '#98971a'
+#       yellow:  '#d79921'
+#       blue:    '#458588'
+#       magenta: '#b16286'
+#       cyan:    '#689d6a'
+#       white:   '#a89984'
+
+#   # Bright colors
+#     bright:
+#       black:   '#928374'
+#       red:     '#fb4934'
+#       green:   '#b8bb26'
+#       yellow:  '#fabd2f'
+#       blue:    '#83a598'
+#       magenta: '#d3869b'
+#       cyan:    '#8ec07c'
+#       white:   '#ebdbb2'
 
 # Visual Bell
 #
@@ -408,28 +468,6 @@ mouse:
 
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: false
-
-  url:
-    # URL launcher
-    #
-    # This program is executed when clicking on a text which is recognized as a URL.
-    # The URL is always added to the command as the last parameter.
-    #
-    # When set to `None`, URL launching will be disabled completely.
-    #
-    # Default:
-    #   - (macOS) open
-    #   - (Linux/BSD) xdg-open
-    #   - (Windows) explorer
-    launcher:
-      program: xdg-open
-      args: []
-
-    # URL modifiers
-    #
-    # These are the modifiers that need to be held down for opening URLs when clicking
-    # on them. The available modifiers are documented in the key binding section.
-    modifiers: None
 
 # Mouse bindings
 #
