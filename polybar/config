@@ -98,7 +98,9 @@ font-3 = Symbola:pixelsize=10;1
 ; Other modules: xkeyboard filesystem xbacklight backlight-acpi cpu memory temperature powermenu weather eth mutt-wizard xwindow wlan
 modules-left = bspwm
 modules-center = mpd
-modules-right = volume mail battery nordvpn date
+; NOTE: add mail back once client is setup
+; modules-right = volume mail battery nordvpn date
+modules-right = volume battery nordvpn date
 
 tray-position = right
 tray-padding = 0

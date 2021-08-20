@@ -5,7 +5,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 autocmd FileType go let b:dispatch = 'go test ' . getcwd() . '/pkg/...'
 
 " View GoDoc info in w3m (like Lisp hyperspec)
-autocmd FileType go nnoremap <buffer> K <Cmd>GoDocBrowser<CR>
+autocmd FileType go set keywordprg=:Lspsaga\ hover_doc
 
 " Lisp hyperspec
 autocmd FileType lisp nnoremap <buffer> K <Cmd>call SlimvHyperspec()<CR>

@@ -20,13 +20,15 @@ fi
 sxhkd &
 /usr/lib/geoclue-2.0/demos/agent &
 
-/home/alec/scripts/autorandr
+# /home/alec/scripts/autorandr
 ~/.fehbg
 picom &
 
-/home/alec/scripts/launch-polybar
+# /home/alec/scripts/launch-polybar
+polybar default &
 nm-applet &
 blueman-applet &
+flameshot &
 
 dunst &
 
@@ -38,6 +40,7 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 bspc rule -a Emacs state=tiled
+bspc rule -a Zathura state=tiled
 bspc rule -a *:scratchpad sticky=on state=floating hidden=on
 while :
 do

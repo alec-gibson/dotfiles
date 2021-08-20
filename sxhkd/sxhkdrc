@@ -4,11 +4,11 @@
 
 # terminal emulator
 super + Return
-	alacritty -e tmux
+	alacritty -e tmux -u
 
 # program launcher
 super + {d,r}
-	{dmenu_run,/home/alec/scripts/run-script}
+	{dmenu_run -l 10,/home/alec/scripts/run-script}
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -138,8 +138,9 @@ XF86AudioMute
 XF86AudioMicMute
     pactl set-source-mute 1 toggle
 
-XF86MonBrightness{Down,Up}
-    light -{U,A} 5
+# {F5,F6}
+XF86MonBrightness{Up,Down}
+    sudo /home/alec/scripts/brightness {up,down}
 
 # Other special keys:
 # XF86Display

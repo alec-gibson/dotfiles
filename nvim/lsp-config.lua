@@ -5,7 +5,8 @@ local lspconfig = require('lspconfig')
 -- sudo npm install -g vscode-json-languageserver
 -- sudo npm install -g vim-language-server
 -- installed clangd through package manager
-local servers = {'gopls', 'solargraph', 'jsonls', 'vimls', 'clangd'}
+-- sudo npm install -g svelte-language-server
+local servers = {'gopls', 'solargraph', 'jsonls', 'vimls', 'clangd', 'svelte'}
 local sig_cfg = {
   bind = true, -- This is mandatory, otherwise border config won't get registered.
                -- If you want to hook lspsaga or other signature handler, pls set to false
@@ -65,4 +66,23 @@ require('lspkind').init({
     -- },
 })
 
-require('lspfuzzy').setup {}
+-- require('lspfuzzy').setup {}
+
+-- init.lua
+vim.g.symbols_outline = {
+    highlight_hovered_item = false,
+    show_guides = false,
+    auto_preview = false,
+    position = 'right',
+    keymaps = {
+        close = "<Esc>",
+        goto_location = "<Cr>",
+        focus_location = "o",
+        hover_symbol = "<C-space>",
+        rename_symbol = "r",
+        code_actions = "a",
+    },
+    lsp_blacklist = {},
+}
+
+require 'lspsaga'.init_lsp_saga()

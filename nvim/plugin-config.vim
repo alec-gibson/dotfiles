@@ -2,14 +2,15 @@
 if has('termguicolors')
     set termguicolors
 endif
-" set background=dark
-set background=light
+set background=dark
+" set background=light
 
 " low contrast colorscheme
-" let g:gruvbox_material_transparent_background = 1
-" let g:gruvbox_material_background = 'hard'
-" colorscheme gruvbox-material
-colorscheme parchment
+let g:gruvbox_material_transparent_background = 1
+let g:gruvbox_material_background = 'hard'
+colorscheme gruvbox-material
+" colorscheme parchment
+" colorscheme solarized8
 
 " vimtex config
 let g:vimtex_view_method = 'zathura'
@@ -45,6 +46,7 @@ let g:lightline = {
 " disable vim-go :GoDef short cut (gd)
 " this is handled by LanguageClient [LC]
 let g:go_def_mapping_enabled = 0
+let g:go_doc_keywordprg_enabled = 0
 
 let g:fzf_layout = { 'down': '~40%' }
 let g:fzfSwitchProjectProjectDepth = -1
