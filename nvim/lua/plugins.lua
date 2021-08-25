@@ -2,7 +2,15 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use 'kyazdani42/nvim-web-devicons'
-  use 'kyazdani42/nvim-tree.lua'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    cmd = {
+      "NvimTreeToggle"
+    },
+    setup = function()
+      require "plugins.tree"
+    end
+  }
   use 'tpope/vim-eunuch'
   use 'tpope/vim-commentary'
   use 'tpope/vim-sleuth'
@@ -18,9 +26,11 @@ return require('packer').startup(function()
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make', requires = {{'nvim-telescope/telescope.nvim'}} }
 
   use 'christoomey/vim-tmux-navigator'
-  use 'sainnhe/gruvbox-material'
-  use 'lifepillar/vim-solarized8'
-  use 'itchyny/lightline.vim'
+  use {"adisen99/codeschool.nvim", requires = {"rktjmp/lush.nvim"}}
+  use {
+    'hoob3rt/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+  }
   use 'mbbill/undotree'
   use 'lervag/vimtex'
   use 'dkarter/bullets.vim'
@@ -38,10 +48,6 @@ return require('packer').startup(function()
   use 'onsails/lspkind-nvim'
   use 'glepnir/lspsaga.nvim'
   use 'simrat39/symbols-outline.nvim'
-
-  -- use { 'junegunn/fzf', run = 'fzf#install()' }
-  -- use { 'junegunn/fzf.vim', requires = {{'junegunn/fzf'}} }
-  -- use { 'ojroques/nvim-lspfuzzy', requires = {{'junegunn/fzf'}, {'junegunn/fzf.vim'}} }
 
   use 'milisims/nvim-luaref'
   use 'nanotee/luv-vimdocs'
