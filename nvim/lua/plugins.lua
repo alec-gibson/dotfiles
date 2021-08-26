@@ -41,9 +41,13 @@ return require('packer').startup(function()
 
   use 'vim-pandoc/vim-pandoc-syntax'
   use 'vim-pandoc/vim-pandoc'
-  use 'norcalli/snippets.nvim'
-  use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-compe'
+
+  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+  use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+
   use 'ray-x/lsp_signature.nvim'
   use 'onsails/lspkind-nvim'
   use 'glepnir/lspsaga.nvim'
@@ -55,7 +59,6 @@ return require('packer').startup(function()
   use 'Olical/conjure'
   use 'Olical/aniseed'
   use 'bakpakin/fennel.vim'
-  use 'tami5/compe-conjure'
   use 'kovisoft/slimv'
 
   use {'alec-gibson/nvim-tetris', branch = 'dev'}
