@@ -157,10 +157,7 @@ alt + {w,d,s,m,n,r,b,e}
     {MOZ_X11_EGL=1 firefox,discord,spotify,alacritty -e neomutt,alacritty -e nmtui,alacritty -e newsboat,blueman-manager,emacs}
 
 Print
-    scrot
-
-super + Print
-    scrot -s
+    flameshot gui
 
 # scratchpad
 super + grave

@@ -121,6 +121,10 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'conjure' },
+    { name = 'path' },
+    { name = 'buffer' },
+    { name = 'tmux' },
   },
 }
 

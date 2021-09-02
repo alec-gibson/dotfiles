@@ -8,7 +8,7 @@ return require('packer').startup(function()
       "NvimTreeToggle"
     },
     setup = function()
-      require "plugins.tree"
+      require "nvim-tree-config"
     end
   }
   use 'tpope/vim-eunuch'
@@ -22,11 +22,13 @@ return require('packer').startup(function()
   use { 'nvim-lua/popup.nvim', requires = {{'nvim-lua/plenary.nvim'}} }
   use { 'lewis6991/gitsigns.nvim', requires = {{'nvim-lua/plenary.nvim'}} }
   use { 'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'}} }
-  use { 'oberblastmeister/neuron.nvim', requires = {{'nvim-telescope/telescope.nvim'}} }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make', requires = {{'nvim-telescope/telescope.nvim'}} }
 
   use 'christoomey/vim-tmux-navigator'
-  use {"adisen99/codeschool.nvim", requires = {"rktjmp/lush.nvim"}}
+  use {
+    "adisen99/codeschool.nvim",
+    requires = {"rktjmp/lush.nvim"},
+  }
   use {
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
@@ -39,14 +41,34 @@ return require('packer').startup(function()
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSInstall maintained | TSUpdate'}
   use { 'nvim-treesitter/nvim-treesitter-textobjects', requires = {{'nvim-treesitter/nvim-treesitter'}} }
 
+  use {
+    'edolphin-ydf/goimpl.nvim',
+    requires = {
+      {'nvim-lua/plenary.nvim'},
+      {'nvim-lua/popup.nvim'},
+      {'nvim-telescope/telescope.nvim'},
+      {'nvim-treesitter/nvim-treesitter'},
+    },
+    config = function()
+      require'telescope'.load_extension'goimpl'
+    end,
+  }
+
   use 'vim-pandoc/vim-pandoc-syntax'
   use 'vim-pandoc/vim-pandoc'
 
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use 'PaterJason/cmp-conjure'
+  use {
+    'andersevenrud/compe-tmux',
+    branch = 'cmp'
+  }
 
   use 'ray-x/lsp_signature.nvim'
   use 'onsails/lspkind-nvim'
