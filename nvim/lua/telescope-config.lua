@@ -15,15 +15,15 @@ require('telescope').setup{
     initial_mode = "insert",
     selection_strategy = "reset",
     sorting_strategy = "descending",
-    layout_strategy = "horizontal",
-    layout_config = {
-      horizontal = {
-        mirror = false,
-      },
-      vertical = {
-        mirror = false,
-      },
-    },
+    layout_strategy = "vertical",
+    -- layout_config = {
+    --   horizontal = {
+    --     mirror = false,
+    --   },
+    --   vertical = {
+    --     mirror = false,
+    --   },
+    -- },
     file_sorter =  require'telescope.sorters'.get_fuzzy_file,
     file_ignore_patterns = {},
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,

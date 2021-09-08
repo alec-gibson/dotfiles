@@ -33,6 +33,10 @@ return require('packer').startup(function()
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
   }
+  use {
+    'alvarosevilla95/luatab.nvim',
+    requires='kyazdani42/nvim-web-devicons'
+  }
   use 'mbbill/undotree'
   use 'lervag/vimtex'
   use 'dkarter/bullets.vim'
@@ -40,19 +44,6 @@ return require('packer').startup(function()
   use 'hashivim/vim-hashicorp-tools'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSInstall maintained | TSUpdate'}
   use { 'nvim-treesitter/nvim-treesitter-textobjects', requires = {{'nvim-treesitter/nvim-treesitter'}} }
-
-  use {
-    'edolphin-ydf/goimpl.nvim',
-    requires = {
-      {'nvim-lua/plenary.nvim'},
-      {'nvim-lua/popup.nvim'},
-      {'nvim-telescope/telescope.nvim'},
-      {'nvim-treesitter/nvim-treesitter'},
-    },
-    config = function()
-      require'telescope'.load_extension'goimpl'
-    end,
-  }
 
   use 'vim-pandoc/vim-pandoc-syntax'
   use 'vim-pandoc/vim-pandoc'

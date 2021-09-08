@@ -35,6 +35,7 @@ opt.nrformats = ""                                 -- make C-x and C-a treat num
 opt.conceallevel = 1
 opt.grepprg = "rg --vimgrep --hidden"
 opt.showmode = false -- don't need to show mode because of lightline
+opt.tabline = '%!v:lua.require\'luatab\'.tabline()'
 
 -- search settings
 opt.ignorecase = true
@@ -174,42 +175,40 @@ map('n', '<C-p>', ':cprevious<cr>')
 -- map('t', '<ESC>', '<C-\><C-n>')
 
 -- compilation / testing
-map('n', '<leader><space>', ':call SmartCompile()<cr>')
-map('n', '<C-Space>', ':Dispatch<cr>')
+map('n', '<leader><space>', ':call SmartCompile()<cr>', {silent = true, noremap = true})
+map('n', '<C-Space>', ':Dispatch<cr>', {silent = true, noremap = true})
 
 -- Telescope
-map('n', '<leader>e', '<Cmd>lua require("telescope.builtin").find_files({find_command={"rg", "--files", "--hidden", "--smart-case", "--no-ignore", "--follow", "--glob", "!.git/*"}})<cr>')
-map('n', '<leader>b', '<Cmd>Telescope buffers<cr>')
-map('n', '<leader>H', '<Cmd>Telescope help_tags<cr>')
-map('n', '<leader>f', '<Cmd>Telescope live_grep<cr>')
-map('n', '<leader>m', '<Cmd>Telescope man_pages<cr>')
+map('n', '<leader>e', '<Cmd>lua require("telescope.builtin").find_files({find_command={"rg", "--files", "--hidden", "--smart-case", "--no-ignore", "--follow", "--glob", "!.git/*"}})<cr>', {silent = true, noremap = true})
+map('n', '<leader>b', '<Cmd>Telescope buffers<cr>', {silent = true, noremap = true})
+map('n', '<leader>H', '<Cmd>Telescope help_tags<cr>', {silent = true, noremap = true})
+map('n', '<leader>f', '<Cmd>Telescope live_grep<cr>', {silent = true, noremap = true})
+map('n', '<leader>m', '<Cmd>Telescope man_pages<cr>', {silent = true, noremap = true})
 
 -- fugitive
-map('n', '<leader>g', ':G<cr>')
+map('n', '<leader>g', ':G<cr>', {silent = true, noremap = true})
 
 -- symbols-outline
-map('n', '<leader>o', ':SymbolsOutline<cr>')
+map('n', '<leader>o', ':SymbolsOutline<cr>', {silent = true, noremap = true})
 
 -- lsp
-map('n', 'gy', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', {silent = true})
-map('n','gd', '<Cmd>Telescope lsp_definitions theme=get_ivy<CR>', {silent = true})
-map('n','gm', '<Cmd>Telescope lsp_implementations theme=get_ivy<CR>', {silent = true})
-map('n','gr', '<Cmd>Telescope lsp_references theme=get_ivy<CR>', {silent = true})
-map('n', '<leader>a', '<Cmd>Telescope lsp_code_actions theme=get_ivy<CR>')
-map('n', '<leader>d', '<Cmd>Telescope lsp_document_diagnostics theme=get_ivy<cr>')
--- map('n','K', '<Cmd>Lspsaga hover_doc<CR>', {silent = true})
-map('n','<leader>r', '<Cmd>Lspsaga rename<CR>', {silent = true})
-
-map('n','gp', "<Cmd>lua require'telescope'.extensions.goimpl.goimpl{}<CR>", {silent = true})
+map('n', 'gy', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', {silent = true, noremap = true})
+map('n','gd', '<Cmd>Telescope lsp_definitions<CR>', {silent = true, noremap = true})
+map('n','gm', '<Cmd>Telescope lsp_implementations<CR>', {silent = true, noremap = true})
+map('n','gr', '<Cmd>Telescope lsp_references<CR>', {silent = true, noremap = true})
+map('n', '<leader>a', '<Cmd>Telescope lsp_code_actions theme=get_cursor<CR>', {silent = true, noremap = true})
+map('n', '<leader>d', '<Cmd>Telescope lsp_document_diagnostics<CR>', {silent = true, noremap = true})
+-- map('n','K', '<Cmd>Lspsaga hover_doc<CR>', {silent = true, noremap = true})
+map('n','<leader>r', '<Cmd>Lspsaga rename<CR>', {silent = true, noremap = true})
 
 -- easy window creation
-map('n','<leader>h', ':wincmd v<CR>', {silent = true})
-map('n','<leader>j', ':wincmd s | wincmd j<CR>', {silent = true})
-map('n','<leader>k', ':wincmd s<CR>', {silent = true})
-map('n','<leader>l', ':wincmd v | wincmd l<CR>', {silent = true})
+map('n','<leader>h', ':wincmd v<CR>', {silent = true, noremap = true})
+map('n','<leader>j', ':wincmd s | wincmd j<CR>', {silent = true, noremap = true})
+map('n','<leader>k', ':wincmd s<CR>', {silent = true, noremap = true})
+map('n','<leader>l', ':wincmd v | wincmd l<CR>', {silent = true, noremap = true})
 
 -- tree view
-map('n','<leader>t', ':NvimTreeToggle<cr>', {silent = true})
+map('n','<leader>t', ':NvimTreeToggle<cr>', {silent = true, noremap = true})
 
 cmd [[
     " Return to last edit position when opening files
