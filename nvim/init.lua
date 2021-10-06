@@ -11,6 +11,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute 'packadd packer.nvim'
 end
 
+require('packages')
+
 opt.hidden = true -- if hidden is not set, TextEdit might fail.
 opt.cmdheight = 2 -- Better display for messages
 opt.updatetime = 300 -- Smaller updatetime for CursorHold & CursorHoldI
@@ -45,8 +47,8 @@ opt.hlsearch = true
 opt.inccommand = "nosplit"
 
 -- no error bells
-opt.errorbells = false
-opt.visualbell = false
+-- opt.errorbells = false
+-- opt.visualbell = false
 opt.tm = 500
 
 -- use the patience diff algorithm
@@ -72,8 +74,6 @@ cmd [[
     command! -nargs=+ Grep execute 'silent grep! <args>' | copen
 ]]
 
-require('packages')
-
 opt.termguicolors = true
 opt.background = "dark"
 g.codeschool_contrast_dark = 'medium'
@@ -91,11 +91,6 @@ g.dispatch_no_maps = 1
 -- this is handled by LanguageClient [LC]
 g.go_def_mapping_enabled = 0
 g.go_doc_keywordprg_enabled = 0
-
-g.nvim_tree_auto_close = 1 -- 0 by default, closes the tree when it's the last window
-g.nvim_tree_follow = 1 -- 0 by default, this option allows the cursor to be updated when entering a buffer
-g.nvim_tree_indent_markers = 1 -- 0 by default, this option shows indent markers when folders are open
--- g.nvim_tree_disable_keybindings = 1
 
 g.slimv_balloon = true
 -- g.slimv_browser_cmd = "tmux split-window -h w3m"
@@ -198,7 +193,6 @@ map('n','gm', '<Cmd>Telescope lsp_implementations<CR>', {silent = true, noremap 
 map('n','gr', '<Cmd>Telescope lsp_references<CR>', {silent = true, noremap = true})
 map('n', '<leader>a', '<Cmd>Telescope lsp_code_actions theme=get_cursor<CR>', {silent = true, noremap = true})
 map('n', '<leader>d', '<Cmd>Telescope lsp_document_diagnostics<CR>', {silent = true, noremap = true})
--- map('n','K', '<Cmd>Lspsaga hover_doc<CR>', {silent = true, noremap = true})
 map('n','<leader>r', '<Cmd>Lspsaga rename<CR>', {silent = true, noremap = true})
 
 -- easy window creation

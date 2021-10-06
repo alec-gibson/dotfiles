@@ -45,8 +45,9 @@ require('gitsigns').setup {
     -- ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
     -- ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
   },
-  watch_index = {
-    interval = 1000
+  watch_gitdir = {
+    interval = 1000,
+    follow_files = true
   },
   -- current_line_blame = false,
   -- current_line_blame_delay = 1000,
@@ -54,7 +55,9 @@ require('gitsigns').setup {
   sign_priority = 6,
   update_debounce = 100,
   status_formatter = nil, -- Use default
-  use_internal_diff = true,  -- If luajit is present
+  diff_opts = {
+    internal = true -- If luajit is present
+  },
 }
 
 require'lualine'.setup {
@@ -83,4 +86,34 @@ require'lualine'.setup {
   },
   tabline = {},
   extensions = {'quickfix', 'fugitive', 'nvim-tree'}
+}
+
+require'nvim-tree'.setup {
+  disable_netrw       = true,
+  hijack_netrw        = true,
+  open_on_setup       = false,
+  ignore_ft_on_setup  = {},
+  auto_close          = true,
+  open_on_tab         = false,
+  hijack_cursor       = false,
+  update_cwd          = false,
+  lsp_diagnostics     = false,
+  update_focused_file = {
+    enable      = true,
+    update_cwd  = false,
+    ignore_list = {}
+  },
+  system_open = {
+    cmd  = nil,
+    args = {}
+  },
+  view = {
+    width = 30,
+    side = 'left',
+    auto_resize = false,
+    mappings = {
+      custom_only = false,
+      list = {}
+    }
+  }
 }
