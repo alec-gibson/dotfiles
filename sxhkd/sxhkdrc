@@ -7,8 +7,8 @@ super + Return
 	alacritty -e tmux -u
 
 # program launcher
-super + {d,r}
-	{dmenu_run -l 10,/home/alec/scripts/run-script}
+super + d
+	/home/alec/scripts/dmenu-menu
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -86,7 +86,7 @@ super + {o,i}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} '{1-9,0}'
 
 #
 # preselect
@@ -153,8 +153,8 @@ XF86MonBrightness{Up,Down}
 #
 # application shortcuts
 #
-alt + {w,d,s,m,n,r,b,e}
-    {MOZ_X11_EGL=1 firefox,discord,spotify,alacritty -e neomutt,alacritty -e nmtui,alacritty -e newsboat,blueman-manager,emacs}
+alt + {w,d,s,m,n,r,e}
+    {MOZ_X11_EGL=1 firefox,discord,spotify,alacritty -e neomutt,alacritty -e nmtui,alacritty -e newsboat,emacs}
 
 Print
     flameshot gui

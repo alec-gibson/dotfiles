@@ -40,6 +40,7 @@ return require('packer').startup(function()
   use 'hashivim/vim-hashicorp-tools'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSInstall maintained | TSUpdate'}
   use { 'nvim-treesitter/nvim-treesitter-textobjects', requires = {{'nvim-treesitter/nvim-treesitter'}} }
+  use { 'nvim-treesitter/playground', requires = {{'nvim-treesitter/nvim-treesitter'}} }
 
   use 'vim-pandoc/vim-pandoc-syntax'
   use 'vim-pandoc/vim-pandoc'
@@ -59,7 +60,6 @@ return require('packer').startup(function()
 
   use 'ray-x/lsp_signature.nvim'
   use 'onsails/lspkind-nvim'
-  use 'glepnir/lspsaga.nvim'
   use 'simrat39/symbols-outline.nvim'
 
   use 'milisims/nvim-luaref'

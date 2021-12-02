@@ -97,7 +97,6 @@ require'nvim-tree'.setup {
   open_on_tab         = false,
   hijack_cursor       = false,
   update_cwd          = false,
-  lsp_diagnostics     = false,
   update_focused_file = {
     enable      = true,
     update_cwd  = false,
@@ -117,3 +116,5 @@ require'nvim-tree'.setup {
     }
   }
 }
+
+require('luatab').setup({})

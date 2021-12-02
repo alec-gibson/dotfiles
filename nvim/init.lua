@@ -37,7 +37,6 @@ opt.nrformats = ""                                 -- make C-x and C-a treat num
 opt.conceallevel = 1
 opt.grepprg = "rg --vimgrep --hidden"
 opt.showmode = false -- don't need to show mode because of lightline
-opt.tabline = '%!v:lua.require\'luatab\'.tabline()'
 
 -- search settings
 opt.ignorecase = true
@@ -90,7 +89,11 @@ g.dispatch_no_maps = 1
 -- disable vim-go :GoDef short cut (gd)
 -- this is handled by LanguageClient [LC]
 g.go_def_mapping_enabled = 0
-g.go_doc_keywordprg_enabled = 0
+g.go_metalinter_autosave = 0
+
+-- NOTE: this is to prevent :w from stalling while gopls is starting up
+g.go_fmt_mode = 'goimports'
+g.go_imports_mode = 'goimports'
 
 g.slimv_balloon = true
 -- g.slimv_browser_cmd = "tmux split-window -h w3m"
@@ -104,9 +107,6 @@ g.slimv_echolines = 1
 g.slimv_impl = 'sbcl'
 g.slimv_repl_name = 'REPL'
 g.slimv_repl_split = 2 -- horizontal split below
-
--- set the default browser command to be used by vim-go
-g.go_play_browser_command = 'tmux new-window w3m %URL%'
 
 cmd [[
     " Lets me run different compile commands depending on the filename
@@ -193,7 +193,7 @@ map('n','gm', '<Cmd>Telescope lsp_implementations<CR>', {silent = true, noremap 
 map('n','gr', '<Cmd>Telescope lsp_references<CR>', {silent = true, noremap = true})
 map('n', '<leader>a', '<Cmd>Telescope lsp_code_actions theme=get_cursor<CR>', {silent = true, noremap = true})
 map('n', '<leader>d', '<Cmd>Telescope lsp_document_diagnostics<CR>', {silent = true, noremap = true})
-map('n','<leader>r', '<Cmd>Lspsaga rename<CR>', {silent = true, noremap = true})
+map('n', '<leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', {silent = true, noremap = true})
 
 -- easy window creation
 map('n','<leader>h', ':wincmd v<CR>', {silent = true, noremap = true})
@@ -207,9 +207,6 @@ map('n','<leader>t', ':NvimTreeToggle<cr>', {silent = true, noremap = true})
 cmd [[
     " Return to last edit position when opening files
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    
-    " Dispatch commands
-    autocmd FileType go let b:dispatch = 'go test ' . getcwd() . '/pkg/...'
     
     " View GoDoc info in w3m (like Lisp hyperspec)
     autocmd FileType go set keywordprg=:Lspsaga\ hover_doc

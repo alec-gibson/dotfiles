@@ -28,8 +28,53 @@ white = ${xrdb:color15:#ebdbb2}
 background = ${xrdb:color256:#1d2021}
 foreground = ${xrdb:color257:#ebdbb2}
 
+[bar/default]
+monitor = eDP-1
+enable-ipc = true
+width = 100%
+height = 24
+fixed-center = false
+bottom = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-size = 0
+border-color = ${colors.white}
+
+padding-left = 1
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = mono:pixelsize=11;1
+font-1 = Inconsolata Nerd Font:size=10;1
+font-2 = Noto Color Emoji:scale=10:style=Regular;2
+font-3 = Symbola:pixelsize=10;1
+
+line-size = 2
+
+
+; Other modules: xkeyboard filesystem xbacklight backlight-acpi cpu memory temperature powermenu weather eth mutt-wizard xwindow wlan
+modules-left = bspwm
+modules-center = mpd
+; NOTE: add mail back once client is setup
+; modules-right = volume mail battery nordvpn date
+modules-right = volume nordvpn memory date battery
+
+tray-position = right
+tray-padding = 0
+
+wm-restack = bspwm
+
+;override-redirect = true
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
 [bar/default_external]
-monitor = HDMI-2
+monitor = HDMI-1
 enable-ipc = true
 width = 100%
 height = 24
@@ -56,54 +101,8 @@ font-3 = Symbola:pixelsize=12;1
 
 ; Other modules: xkeyboard filesystem xbacklight backlight-acpi cpu memory temperature powermenu weather eth mutt-wizard xwindow wlan
 modules-left = bspwm
-modules-center = mpd
-modules-right = volume mail date
-
-tray-position = right
-tray-padding = 0
-
-wm-restack = bspwm
-
-;override-redirect = true
-
-scroll-up = bspwm-desknext
-scroll-down = bspwm-deskprev
-
-[bar/default]
-monitor = eDP-1
-enable-ipc = true
-width = 100%
-height = 24
-fixed-center = false
-bottom = true
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-border-size = 0
-border-color = ${colors.white}
-
-padding-left = 1
-padding-right = 1
-
-module-margin-left = 1
-module-margin-right = 1
-
-font-0 = mono:pixelsize=11;1
-font-1 = Inconsolata Nerd Font:size=10;1
-font-2 = Noto Color Emoji:scale=10:style=Regular;2
-font-3 = Symbola:pixelsize=10;1
-
-
-; Other modules: xkeyboard filesystem xbacklight backlight-acpi cpu memory temperature powermenu weather eth mutt-wizard xwindow wlan
-modules-left = bspwm
-modules-center = mpd
-; NOTE: add mail back once client is setup
-; modules-right = volume mail battery nordvpn date
-modules-right = volume battery nordvpn date
-
-tray-position = right
-tray-padding = 0
+modules-center = 
+modules-right = date
 
 wm-restack = bspwm
 
@@ -264,12 +263,13 @@ format-prefix-foreground = ${colors.gray}
 label = %percentage%%
 
 [module/memory]
-type = internal/memory
-interval = 2
+type = custom/script
+exec = echo "$(free -mh | head -2 | tail -1 | awk '{ print $3 }') / $(free -mh | head -2 | tail -1 | awk '{ print $2 }')"
+interval = 5
 format-prefix = "🧠 "
+format-underline = ${colors.red}
+
 format-prefix-foreground = ${colors.gray}
-; format-underline = ${colors.darkcyan}
-label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
@@ -326,7 +326,7 @@ time = "%I:%M%p"
 
 format-prefix = " "
 format-prefix-foreground = ${colors.gray}
-; format-underline = ${colors.blue}
+format-underline = ${colors.blue}
 
 label = %date% %time%
 
@@ -377,15 +377,15 @@ full-at = 98
 
 ;format-charging = Charging... <label-charging>
 format-charging = <animation-charging> <label-charging>
-; format-charging-underline = ${colors.darkyellow}
+format-charging-underline = ${colors.darkyellow}
 
 ;format-discharging = <label-discharging>
 format-discharging = <ramp-capacity> <label-discharging>
-; format-discharging-underline = ${self.format-charging-underline}
+format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.gray}
-; format-full-underline = ${self.format-charging-underline}
+format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -454,6 +454,7 @@ menu-2-1-exec = menu-open-0
 type = custom/script
 exec = nordvpn status | awk '/Status:/ {printf " NordVPN: %s ",$4}; /Country:/ {printf "(%s)",$2}; END {print ""}'
 click-left = /home/alec/scripts/toggle-nordvpn.sh
+format-underline = ${colors.darkyellow}
 
 [settings]
 screenchange-reload = true

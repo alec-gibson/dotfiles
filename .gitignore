@@ -1,3 +1,8 @@
 .netrwhist
 local-config.vim
 nvim/plugin
+/mpd/database
+/mpd/log
+/mpd/state
+/mpd/sticker.sql
+/ncmpcpp/error.log
