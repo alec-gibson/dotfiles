@@ -17,12 +17,10 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 -- installed gopls through vim-go
--- gem install --user-install solargraph
--- sudo npm install -g vscode-json-languageserver
 -- sudo npm install -g vim-language-server
 -- installed clangd through package manager
 -- sudo npm install -g svelte-language-server
-local servers = {'gopls', 'solargraph', 'jsonls', 'vimls', 'clangd', 'svelte'}
+local servers = {'gopls', 'vimls', 'clangd', 'svelte'}
 local sig_cfg = {
   bind = true, -- This is mandatory, otherwise border config won't get registered.
                -- If you want to hook lspsaga or other signature handler, pls set to false
@@ -40,6 +38,15 @@ for _, lsp in ipairs(servers) do
     end
   }
 end
+
+-- sudo npm install -g vscode-json-languageserver
+lspconfig['jsonls'].setup{
+  cmd = { "vscode-json-languageserver", "--stdio" },
+  capabilities = capabilities,
+  on_attach = function()
+    require('lsp_signature').on_attach(sig_cfg)
+  end
+}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {

@@ -16,6 +16,8 @@ if test -z "$(xset q | grep 'auto repeat delay:  350')"
 then
 	xset r rate 350 50
 fi
+xsetroot -cursor_name left_ptr
+xrdb ~/.Xresources
 
 sxhkd &
 /usr/lib/geoclue-2.0/demos/agent &
