@@ -117,4 +117,4 @@ require'nvim-tree'.setup {
   }
 }
 
-require('luatab').setup({})
+require('luatab').setup{}

@@ -39,6 +39,9 @@ return require('packer').startup(function()
   use 'vim-pandoc/vim-pandoc-syntax'
   use 'vim-pandoc/vim-pandoc'
 
+  use 'aklt/plantuml-syntax'
+  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install'}
+
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   use 'ray-x/lsp_signature.nvim'
   use 'onsails/lspkind-nvim'

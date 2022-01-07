@@ -16,14 +16,13 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   },
 }
 
--- installed gopls through vim-go
+-- gem install --user-install solargraph
 -- sudo npm install -g vim-language-server
 -- installed clangd through package manager
 -- sudo npm install -g svelte-language-server
-local servers = {'gopls', 'vimls', 'clangd', 'svelte'}
+local servers = { 'solargraph', 'vimls', 'svelte'}
 local sig_cfg = {
   bind = true, -- This is mandatory, otherwise border config won't get registered.
-               -- If you want to hook lspsaga or other signature handler, pls set to false
   doc_lines = 10, -- only show one line of comment set to 0 if you do not want API comments be shown
   decorator = {"***", "***"},  -- or decorator = {"***", "***"}  decorator = {"**", "**"} see markdown help
   hint_enable = false, -- virtual hint disable
@@ -38,6 +37,15 @@ for _, lsp in ipairs(servers) do
     end
   }
 end
+
+-- installed gopls through vim-go
+lspconfig['gopls'].setup{
+  cmd = { "gopls", "-remote=auto" },
+  capabilities = capabilities,
+  on_attach = function()
+    require('lsp_signature').on_attach(sig_cfg)
+  end
+}
 
 -- sudo npm install -g vscode-json-languageserver
 lspconfig['jsonls'].setup{

@@ -108,6 +108,8 @@ g.slimv_impl = 'sbcl'
 g.slimv_repl_name = 'REPL'
 g.slimv_repl_split = 2 -- horizontal split below
 
+g.mkdp_filetypes = {'markdown', 'plantuml'}
+
 cmd [[
     " Lets me run different compile commands depending on the filename
     " TODO: learn how to use makeprg
@@ -207,9 +209,6 @@ map('n','<leader>t', ':NvimTreeToggle<cr>', {silent = true, noremap = true})
 cmd [[
     " Return to last edit position when opening files
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    
-    " View GoDoc info in w3m (like Lisp hyperspec)
-    autocmd FileType go set keywordprg=:Lspsaga\ hover_doc
     
     " Lisp hyperspec
     autocmd FileType lisp nnoremap <buffer> K <Cmd>call SlimvHyperspec()<CR>
