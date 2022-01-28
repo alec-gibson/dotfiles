@@ -5,22 +5,18 @@ local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-
 if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-    execute 'packadd packer.nvim'
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
 require('packages')
 
-opt.hidden = true -- if hidden is not set, TextEdit might fail.
 opt.cmdheight = 2 -- Better display for messages
 opt.updatetime = 300 -- Smaller updatetime for CursorHold & CursorHoldI
 opt.shortmess = "c" -- don't give ins-completion-menu messages.
 opt.signcolumn = "no"
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.shell = "bash"
-opt.history = 500                                                     -- number of lines of history remembered
 opt.lazyredraw = true                                                      -- don't redraw during macro application
 opt.showmatch = true                                                       -- show matching brackets
 opt.si = true                                                              -- smart indent
@@ -95,18 +91,18 @@ g.go_metalinter_autosave = 0
 g.go_fmt_mode = 'goimports'
 g.go_imports_mode = 'goimports'
 
-g.slimv_balloon = true
+-- g.slimv_balloon = true
 -- g.slimv_browser_cmd = "tmux split-window -h w3m"
-g.slimv_browser_cmd = "tmux new-window w3m"
-g.slimv_clhs_root = 'http://www.lispworks.com/documentation/HyperSpec/Body/'
-g.slimv_ctags = '/usr/bin/ctags -Ra --language-force=lisp .'
-g.slimv_lisp = '/usr/bin/sbcl'
-g.slimv_repl_split_size = 10
-g.slimv_keybindings = 1
-g.slimv_echolines = 1
-g.slimv_impl = 'sbcl'
-g.slimv_repl_name = 'REPL'
-g.slimv_repl_split = 2 -- horizontal split below
+-- g.slimv_browser_cmd = "tmux new-window w3m"
+-- g.slimv_clhs_root = 'http://www.lispworks.com/documentation/HyperSpec/Body/'
+-- g.slimv_ctags = '/usr/bin/ctags -Ra --language-force=lisp .'
+-- g.slimv_lisp = '/usr/bin/sbcl'
+-- g.slimv_repl_split_size = 10
+-- g.slimv_keybindings = 1
+-- g.slimv_echolines = 1
+-- g.slimv_impl = 'sbcl'
+-- g.slimv_repl_name = 'REPL'
+-- g.slimv_repl_split = 2 -- horizontal split below
 
 g.mkdp_filetypes = {'markdown', 'plantuml'}
 
@@ -137,15 +133,15 @@ cmd [[
         endif
     endfunction
 
-    " evaluate lisp form, then insert result in a comment at the end of the line
-    function! EvalAndInsertSingleLine()
-        redir! > /tmp/lispeval
-        call SlimvEvalExp()
-        redir END
-        call system("sed -i '/^$/d' /tmp/lispeval")
-        read /tmp/lispeval
-        exe "normal kA ;\<ESC>JF)"
-    endfunction
+    " " evaluate lisp form, then insert result in a comment at the end of the line
+    " function! EvalAndInsertSingleLine()
+    "     redir! > /tmp/lispeval
+    "     call SlimvEvalExp()
+    "     redir END
+    "     call system("sed -i '/^$/d' /tmp/lispeval")
+    "     read /tmp/lispeval
+    "     exe "normal kA ;\<ESC>JF)"
+    " endfunction
 ]]
 
 require('treesitter-config')
@@ -209,13 +205,4 @@ map('n','<leader>t', ':NvimTreeToggle<cr>', {silent = true, noremap = true})
 cmd [[
     " Return to last edit position when opening files
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    
-    " Lisp hyperspec
-    autocmd FileType lisp nnoremap <buffer> K <Cmd>call SlimvHyperspec()<CR>
-    
-    " Binding for evaluating lisp forms
-    autocmd FileType lisp nnoremap <buffer> <localleader>p <Cmd>call EvalAndInsertSingleLine()<CR>
-    
-    " Close the repl if it's the last window open
-    autocmd BufEnter REPL if winnr("$") == 1 | q | endif
 ]]

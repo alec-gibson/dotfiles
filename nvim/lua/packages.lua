@@ -65,4 +65,8 @@ return require('packer').startup(function()
   -- use 'kovisoft/slimv'
 
   use {'alec-gibson/nvim-tetris', branch = 'dev'}
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
