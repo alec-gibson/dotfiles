@@ -49,20 +49,14 @@ return require('packer').startup(function()
 
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use 'andersevenrud/compe-tmux'
 
   use 'milisims/nvim-luaref'
   use 'nanotee/luv-vimdocs'
-
-  -- use 'Olical/conjure'
-  -- use 'PaterJason/cmp-conjure'
-  -- use 'Olical/aniseed'
-  -- use 'bakpakin/fennel.vim'
-  -- use 'kovisoft/slimv'
 
   use {'alec-gibson/nvim-tetris', branch = 'dev'}
 
