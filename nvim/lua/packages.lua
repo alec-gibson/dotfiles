@@ -6,7 +6,6 @@ return require('packer').startup(function()
   use 'lewis6991/impatient.nvim'
 
   use 'kyazdani42/nvim-web-devicons'
-  use 'kyazdani42/nvim-tree.lua'
 
   use 'tpope/vim-eunuch'
   use 'tpope/vim-commentary'
@@ -15,16 +14,30 @@ return require('packer').startup(function()
   use 'tpope/vim-repeat'
   use 'tpope/vim-fugitive'
 
-  use 'nvim-lua/plenary.nvim'
-  use { 'nvim-lua/popup.nvim', requires = {'nvim-lua/plenary.nvim'} }
-  use { 'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'} }
-  use { 'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'}} }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make', requires = {{'nvim-telescope/telescope.nvim'}} }
+  use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
+  use { 'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim'} }
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make', requires = 'nvim-telescope/telescope.nvim' }
+  use {'stevearc/dressing.nvim'}
+  use {'kevinhwang91/nvim-bqf', ft = 'qf'}
+
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
   use 'christoomey/vim-tmux-navigator'
-  use { "adisen99/codeschool.nvim", requires = {"rktjmp/lush.nvim"} }
+  use { "adisen99/codeschool.nvim", requires = "rktjmp/lush.nvim" }
+  use { 'RRethy/nvim-base16' }
   use { 'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true} }
-  use { 'alvarosevilla95/luatab.nvim', requires = {'kyazdani42/nvim-web-devicons'} }
+  use { 'arkav/lualine-lsp-progress', requires = 'hoob3rt/lualine.nvim' }
+  use { 'alvarosevilla95/luatab.nvim', requires = 'kyazdani42/nvim-web-devicons' }
+
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+      branch = "v2.x",
+      requires = { 
+        "nvim-lua/plenary.nvim",
+        "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+        "MunifTanjim/nui.nvim",
+      }
+    }
 
   use 'mbbill/undotree'
   use 'lervag/vimtex'
@@ -32,9 +45,9 @@ return require('packer').startup(function()
   use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
   use 'hashivim/vim-hashicorp-tools'
 
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSInstall maintained | TSUpdate'}
-  use { 'nvim-treesitter/nvim-treesitter-textobjects', requires = {{'nvim-treesitter/nvim-treesitter'}} }
-  use { 'nvim-treesitter/playground', requires = {{'nvim-treesitter/nvim-treesitter'}} }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSInstall all | TSUpdate'}
+  use { 'nvim-treesitter/nvim-treesitter-textobjects', requires = 'nvim-treesitter/nvim-treesitter' }
+  use { 'nvim-treesitter/playground', requires = 'nvim-treesitter/nvim-treesitter' }
 
   use 'vim-pandoc/vim-pandoc-syntax'
   use 'vim-pandoc/vim-pandoc'
@@ -48,6 +61,7 @@ return require('packer').startup(function()
   use 'simrat39/symbols-outline.nvim'
 
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use 'honza/vim-snippets'
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
   use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
   use 'hrsh7th/cmp-path'

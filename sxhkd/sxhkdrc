@@ -50,6 +50,10 @@ super + {t,shift + t,s,f}
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
+# set the node layer
+super + ctrl + {b,n,a}
+	bspc node -l {below,normal,above}
+
 #
 # focus/swap
 #
@@ -87,6 +91,9 @@ super + {o,i}
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '{1-9,0}'
+
+super + ctrl + shift + {1-9,0}
+	bspc node -m '{1-9,0}'
 
 #
 # preselect
@@ -153,8 +160,8 @@ XF86MonBrightness{Up,Down}
 #
 # application shortcuts
 #
-alt + {w,d,s,m,n,r,e}
-    {MOZ_X11_EGL=1 firefox,discord,spotify,alacritty -e neomutt,alacritty -e nmtui,alacritty -e newsboat,emacs}
+alt + {w,m}
+    {MOZ_X11_EGL=1 firefox,blueman-manager}
 
 Print
     flameshot gui

@@ -31,7 +31,6 @@ opt.tabstop = 4                                                       -- tab wid
 opt.cursorline = true                                 -- highlight current line
 opt.nrformats = ""                                 -- make C-x and C-a treat numbers with leading zeroes as decimal
 opt.conceallevel = 1
-opt.grepprg = "rg --vimgrep --hidden"
 opt.showmode = false -- don't need to show mode because of lightline
 
 -- search settings
@@ -40,6 +39,9 @@ opt.smartcase = true
 opt.incsearch = true
 opt.hlsearch = true
 opt.inccommand = "nosplit"
+
+opt.grepprg = "rg --vimgrep --hidden --smart-case"
+opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 
 -- no error bells
 -- opt.errorbells = false
@@ -71,8 +73,10 @@ cmd [[
 
 opt.termguicolors = true
 opt.background = "dark"
-g.codeschool_contrast_dark = 'medium'
-cmd 'colorscheme codeschool'
+-- g.codeschool_contrast_dark = 'medium'
+-- cmd 'colorscheme codeschool'
+-- cmd 'colorscheme darkluma'
+-- cmd 'colorscheme base16-tokyo-night-terminal-dark'
 
 -- vimtex config
 g.vimtex_view_method = 'zathura'
@@ -138,8 +142,8 @@ end
 map('n', '<leader>w', ':w<cr>')
 map('n', 'gx', '<Cmd>call OpenLink()<CR>')
 
-map('n', '<C-n>', ':cnext<cr>')
-map('n', '<C-p>', ':cprevious<cr>')
+-- map('n', '<C-n>', ':cnext<cr>')
+-- map('n', '<C-p>', ':cprevious<cr>')
 
 -- use ESC to enter normal mode in terminal
 -- map('t', '<ESC>', '<C-\><C-n>')
@@ -163,11 +167,11 @@ map('n', '<leader>o', ':SymbolsOutline<cr>', {silent = true, noremap = true})
 
 -- lsp
 map('n', 'gy', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', {silent = true, noremap = true})
-map('n','gd', '<Cmd>Telescope lsp_definitions<CR>', {silent = true, noremap = true})
-map('n','gm', '<Cmd>Telescope lsp_implementations<CR>', {silent = true, noremap = true})
-map('n','gr', '<Cmd>Telescope lsp_references<CR>', {silent = true, noremap = true})
-map('n', '<leader>a', '<Cmd>Telescope lsp_code_actions theme=get_cursor<CR>', {silent = true, noremap = true})
-map('n', '<leader>d', '<Cmd>Telescope lsp_document_diagnostics<CR>', {silent = true, noremap = true})
+map('n','gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', {silent = true, noremap = true})
+map('n','gm', '<Cmd>lua vim.lsp.buf.implementation()<CR>', {silent = true, noremap = true})
+map('n','gr', '<Cmd>lua vim.lsp.buf.references()<CR>', {silent = true, noremap = true})
+map('n', '<leader>a', '<Cmd>lua vim.lsp.buf.code_action()<CR>', {silent = true, noremap = true})
+map('n', '<leader>d', '<Cmd>Telescope diagnostics<CR>', {silent = true, noremap = true})
 map('n', '<leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', {silent = true, noremap = true})
 
 -- easy window creation
@@ -177,7 +181,7 @@ map('n','<leader>k', ':wincmd s<CR>', {silent = true, noremap = true})
 map('n','<leader>l', ':wincmd v | wincmd l<CR>', {silent = true, noremap = true})
 
 -- tree view
-map('n','<leader>t', ':NvimTreeToggle<cr>', {silent = true, noremap = true})
+map('n','<leader>t', ':Neotree toggle reveal<cr>', {silent = true, noremap = true})
 
 cmd [[
     " Return to last edit position when opening files

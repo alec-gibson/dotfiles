@@ -1,11 +1,10 @@
 -- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- gem install --user-install solargraph
 -- sudo npm install -g vim-language-server
 local lspconfig = require('lspconfig')
-local servers = {'gopls', 'vimls'}
+local servers = {'vimls'}
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup{
     capabilities = capabilities
@@ -100,4 +99,5 @@ cmp.setup {
   },
 }
 
+luasnip.filetype_extend("all", { "_" })
 require("luasnip/loaders/from_vscode").lazy_load({ paths = "./snippets" })

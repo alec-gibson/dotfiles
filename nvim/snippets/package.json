@@ -8,6 +8,10 @@
       {
         "language": "terraform",
         "path": "./terraform.json"
+      },
+      {
+        "language": "go",
+        "path": "./go.json"
       }
     ]
   }

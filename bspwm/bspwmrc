@@ -1,4 +1,9 @@
 #! /bin/bash
+
+# NOTE: daemon processes managed as systemd user services
+# see ~/.config/systemd/user
+
+/home/alec/scripts/autorandr
 my_laptop_external_monitor=$(xrandr --query | grep 'HDMI-1')
 if [[ $my_laptop_external_monitor = *connected* && ! $my_laptop_external_monitor = *disconnected* ]]; then
 	bspc monitor eDP-1 -d 1 2 3 4 5
@@ -7,6 +12,8 @@ else
 	bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 0
 fi
 
+xrdb -merge ~/.Xresources
+xsetroot -cursor_name left_ptr
 if test -z "$(setxkbmap -query | grep options:)"
 then
 	setxkbmap -option caps:swapescape
@@ -16,33 +23,19 @@ if test -z "$(xset q | grep 'auto repeat delay:  350')"
 then
 	xset r rate 350 50
 fi
-xsetroot -cursor_name left_ptr
-xrdb ~/.Xresources
 
-sxhkd &
-/usr/lib/geoclue-2.0/demos/agent &
-
-/home/alec/scripts/autorandr
 ~/.fehbg
-picom &
-
 /home/alec/scripts/launch-polybar
-# polybar default &
-nm-applet &
-blueman-applet &
-flameshot &
 
-dunst &
-
-bspc config normal_border_color #999999
-bspc config active_border_color #000000
-bspc config focused_border_color #000099
-bspc config border_width         4
+bspc config normal_border_color '#222222'
+bspc config active_border_color '#000000'
+bspc config focused_border_color '#fe8019'
+bspc config border_width         2
 bspc config top_padding          2
 bspc config right_padding        2
 bspc config bottom_padding       2
 bspc config left_padding         2
-bspc config window_gap           2
+# bspc config window_gap           8
 
 bspc config split_ratio          0.50
 bspc config borderless_monocle   true

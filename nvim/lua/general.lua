@@ -39,10 +39,61 @@ require('gitsigns').setup {
   },
 }
 
+require("neo-tree").setup({
+  filesystem = {
+    window = {
+      mappings = {
+        -- disable fuzzy finder
+        ["/"] = "noop"
+      }
+    }
+  }
+})
+
+require('lush')(require('codeschool').setup({
+  plugins = {
+    "cmp", -- nvim-cmp
+    "gitsigns",
+    "lsp",
+    "nvimtree",
+    "packer",
+    "telescope",
+    "treesitter"
+  },
+  langs = {
+    "c",
+    "clojure",
+    "coffeescript",
+    "csharp",
+    "css",
+    "elixir",
+    "golang",
+    "haskell",
+    "html",
+    "java",
+    "js",
+    "json",
+    "jsx",
+    "lua",
+    "markdown",
+    "moonscript",
+    "objc",
+    "ocaml",
+    "purescript",
+    "python",
+    "ruby",
+    "rust",
+    "scala",
+    "typescript",
+    "viml",
+    "xml"
+  }
+}))
+
 require'lualine'.setup {
   options = {
     icons_enabled = true,
-    theme = 'onedark',
+    theme = 'modus-vivendi',
     component_separators = {'', ''},
     section_separators = {'', ''},
     disabled_filetypes = {},
@@ -50,7 +101,7 @@ require'lualine'.setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch'},
-    lualine_c = {'filename'},
+    lualine_c = {'filename', 'lsp_progress'},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
@@ -67,11 +118,6 @@ require'lualine'.setup {
   extensions = {'quickfix', 'fugitive', 'nvim-tree'}
 }
 
-require'nvim-tree'.setup {
-  auto_close          = true,
-  update_focused_file = {
-    enable      = true
-  }
-}
 
-require('luatab').setup{}
+require'luatab'.setup{}
+require'diffview'.setup{}
