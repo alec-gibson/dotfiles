@@ -1,10 +1,9 @@
 -- Add additional capabilities supported by nvim-cmp
 capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- gem install --user-install solargraph
 -- sudo npm install -g vim-language-server
 local lspconfig = require('lspconfig')
-local servers = {'vimls'}
+local servers = {'vimls', 'rust_analyzer'}
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup{
     capabilities = capabilities
@@ -15,9 +14,6 @@ end
 lspconfig['gopls'].setup{
   cmd = { "gopls", "-remote=auto" },
   capabilities = capabilities,
-  on_attach = function()
-    require('lsp_signature').on_attach(sig_cfg)
-  end
 }
 
 -- sudo npm install -g vscode-json-languageserver

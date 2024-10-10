@@ -107,6 +107,17 @@ cmd [[
         :GoBuild
         elseif @% =~ "\.wiki$"
         :Vimwiki2HTML
+        elseif @% =~ "\.rs$"
+        :CargoCheck
+        else
+        :Make
+        endif
+    endfunction
+
+    " Lets me run different run commands depending on the filename
+    function SmartRun()
+        if @% =~ "\.rs$"
+        :CargoRun
         else
         :Make
         endif
@@ -139,6 +150,8 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+local noremapopts = {silent = true, noremap = true}
+
 map('n', '<leader>w', ':w<cr>')
 map('n', 'gx', '<Cmd>call OpenLink()<CR>')
 
@@ -146,42 +159,44 @@ map('n', 'gx', '<Cmd>call OpenLink()<CR>')
 -- map('n', '<C-p>', ':cprevious<cr>')
 
 -- use ESC to enter normal mode in terminal
--- map('t', '<ESC>', '<C-\><C-n>')
+map('t', '<ESC>', '<C-\\><C-n>', noremapopts)
 
 -- compilation / testing
-map('n', '<leader><space>', ':call SmartCompile()<cr>', {silent = true, noremap = true})
-map('n', '<C-Space>', ':Dispatch<cr>', {silent = true, noremap = true})
+map('n', '<leader><space>', ':call SmartCompile()<cr>', noremapopts)
+map('n', '<C-Space>', ':call SmartRun()<cr>', noremapopts)
 
 -- Telescope
-map('n', '<leader>e', '<Cmd>lua require("telescope.builtin").find_files({find_command={"rg", "--files", "--hidden", "--smart-case", "--no-ignore", "--follow", "--glob", "!.git/*"}})<cr>', {silent = true, noremap = true})
-map('n', '<leader>b', '<Cmd>Telescope buffers<cr>', {silent = true, noremap = true})
-map('n', '<leader>H', '<Cmd>Telescope help_tags<cr>', {silent = true, noremap = true})
-map('n', '<leader>f', '<Cmd>Telescope live_grep<cr>', {silent = true, noremap = true})
-map('n', '<leader>m', '<Cmd>Telescope man_pages<cr>', {silent = true, noremap = true})
+map('n', '<leader>e', '<Cmd>lua require("telescope.builtin").find_files({find_command={"rg", "--files", "--hidden", "--smart-case", "--no-ignore", "--follow", "--glob", "!.git/*"}})<cr>', noremapopts)
+map('n', '<leader>b', '<Cmd>Telescope buffers<cr>', noremapopts)
+map('n', '<leader>H', '<Cmd>Telescope help_tags<cr>', noremapopts)
+map('n', '<leader>f', '<Cmd>Telescope live_grep<cr>', noremapopts)
+map('n', '<leader>m', '<Cmd>Telescope man_pages<cr>', noremapopts)
 
 -- fugitive
-map('n', '<leader>g', ':G<cr>', {silent = true, noremap = true})
+map('n', '<leader>g', ':G<cr>', noremapopts)
 
 -- symbols-outline
-map('n', '<leader>o', ':SymbolsOutline<cr>', {silent = true, noremap = true})
+map('n', '<leader>o', ':SymbolsOutline<cr>', noremapopts)
 
 -- lsp
-map('n', 'gy', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', {silent = true, noremap = true})
-map('n','gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', {silent = true, noremap = true})
-map('n','gm', '<Cmd>lua vim.lsp.buf.implementation()<CR>', {silent = true, noremap = true})
-map('n','gr', '<Cmd>lua vim.lsp.buf.references()<CR>', {silent = true, noremap = true})
-map('n', '<leader>a', '<Cmd>lua vim.lsp.buf.code_action()<CR>', {silent = true, noremap = true})
-map('n', '<leader>d', '<Cmd>Telescope diagnostics<CR>', {silent = true, noremap = true})
-map('n', '<leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', {silent = true, noremap = true})
+map('n', 'gy', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', noremapopts)
+map('n','gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', noremapopts)
+map('n','gm', '<Cmd>lua vim.lsp.buf.implementation()<CR>', noremapopts)
+map('n','gr', '<Cmd>lua vim.lsp.buf.references()<CR>', noremapopts)
+map('n', '<leader>a', '<Cmd>lua vim.lsp.buf.code_action()<CR>', noremapopts)
+map('n', '<leader>d', '<Cmd>Telescope diagnostics<CR>', noremapopts)
+map('n', '<leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', noremapopts)
+map('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', bufopts)
+map('n', '<C-k>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', bufopts)
 
 -- easy window creation
-map('n','<leader>h', ':wincmd v<CR>', {silent = true, noremap = true})
-map('n','<leader>j', ':wincmd s | wincmd j<CR>', {silent = true, noremap = true})
-map('n','<leader>k', ':wincmd s<CR>', {silent = true, noremap = true})
-map('n','<leader>l', ':wincmd v | wincmd l<CR>', {silent = true, noremap = true})
+map('n','<leader>h', ':wincmd v<CR>', noremapopts)
+map('n','<leader>j', ':wincmd s | wincmd j<CR>', noremapopts)
+map('n','<leader>k', ':wincmd s<CR>', noremapopts)
+map('n','<leader>l', ':wincmd v | wincmd l<CR>', noremapopts)
 
 -- tree view
-map('n','<leader>t', ':Neotree toggle reveal<cr>', {silent = true, noremap = true})
+map('n','<leader>t', ':Neotree toggle reveal<cr>', noremapopts)
 
 cmd [[
     " Return to last edit position when opening files

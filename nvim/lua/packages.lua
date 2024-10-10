@@ -44,6 +44,10 @@ return require('packer').startup(function()
   use 'dkarter/bullets.vim'
   use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
   use 'hashivim/vim-hashicorp-tools'
+  use {
+    'timonv/vim-cargo',
+    config = 'vim.g.cargo_command = "Dispatch cargo {cmd}"',
+  }
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSInstall all | TSUpdate'}
   use { 'nvim-treesitter/nvim-treesitter-textobjects', requires = 'nvim-treesitter/nvim-treesitter' }

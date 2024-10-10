@@ -6,10 +6,10 @@
 /home/alec/scripts/autorandr
 my_laptop_external_monitor=$(xrandr --query | grep 'HDMI-1')
 if [[ $my_laptop_external_monitor = *connected* && ! $my_laptop_external_monitor = *disconnected* ]]; then
-	bspc monitor eDP-1 -d 1 2 3 4 5
+	bspc monitor eDP -d 1 2 3 4 5
 	bspc monitor HDMI-1 -d 6 7 8 9 0
 else
-	bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 0
+	bspc monitor eDP -d 1 2 3 4 5 6 7 8 9 0
 fi
 
 xrdb -merge ~/.Xresources

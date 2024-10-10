@@ -1,0 +1,28 @@
+vim.api.nvim_buf_create_user_command(
+    0,
+    'CargoRun',
+    function()
+        vim.cmd "Start zsh -c 'cargo run; sleep infinity'"
+    end,
+    {}
+)
+
+vim.api.nvim_buf_create_user_command(
+    0,
+    'CargoBuild',
+    function()
+        vim.cmd "Start zsh -c 'cargo build; sleep infinity'"
+    end,
+    {}
+)
+
+vim.api.nvim_buf_create_user_command(
+    0,
+    'CargoCheck',
+    function()
+        vim.cmd "Start zsh -c 'cargo check; sleep infinity'"
+    end,
+    {}
+)
+
+vim.opt_local.makeprg = 'cargo build'
