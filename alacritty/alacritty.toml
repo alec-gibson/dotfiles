@@ -50,6 +50,9 @@ chars = "\u001Bd"
 key = "D"
 mods = "Alt"
 
+[window]
+opacity = 1.0
+
 [window.padding]
 x = 2
 y = 2
