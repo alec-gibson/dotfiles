@@ -1,15 +1,9 @@
-local execute = vim.api.nvim_command
 local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
 local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
-
-require('packages')
+vim.loader.enable()
 
 opt.cmdheight = 2 -- Better display for messages
 opt.updatetime = 300 -- Smaller updatetime for CursorHold & CursorHoldI
@@ -51,11 +45,6 @@ opt.tm = 500
 -- use the patience diff algorithm
 opt.diffopt = { "internal", "filler", "algorithm:histogram", "indent-heuristic" }
 
--- filetype plugins
-cmd 'filetype on'
-cmd 'filetype plugin on'
-cmd 'filetype indent on'
-
 -- set leader key
 g.mapleader = " "
 g.maplocalleader = ","
@@ -64,38 +53,35 @@ g.maplocalleader = ","
 g.netrw_banner = 0
 g.netrw_altv = 1
 
+local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup("packages")
+
+-- filetype plugins
+cmd 'filetype on'
+cmd 'filetype plugin on'
+cmd 'filetype indent on'
+
 -- fix background color erase bug with vim
 -- g.&t_ut = ''
 
 cmd [[
     command! -nargs=+ Grep execute 'silent grep! <args>' | copen
 ]]
-
-opt.termguicolors = true
-opt.background = "dark"
--- g.codeschool_contrast_dark = 'medium'
--- cmd 'colorscheme codeschool'
--- cmd 'colorscheme darkluma'
--- cmd 'colorscheme base16-tokyo-night-terminal-dark'
-
--- vimtex config
-g.vimtex_view_method = 'zathura'
-g.tex_flavor = 'latex'
-g.vimtex_latexmk = 'nvr'
-
--- vim-dispatch config
-g.dispatch_no_maps = 1
-
--- disable vim-go :GoDef short cut (gd)
--- this is handled by LanguageClient [LC]
-g.go_def_mapping_enabled = 0
-g.go_metalinter_autosave = 0
-
--- NOTE: this is to prevent :w from stalling while gopls is starting up
-g.go_fmt_mode = 'goimports'
-g.go_imports_mode = 'goimports'
-
-g.mkdp_filetypes = {'markdown', 'plantuml'}
 
 cmd [[
     " Lets me run different compile commands depending on the filename
@@ -105,19 +91,6 @@ cmd [[
         :GoTestCompile
         elseif @% =~ "\.go$"
         :GoBuild
-        elseif @% =~ "\.wiki$"
-        :Vimwiki2HTML
-        elseif @% =~ "\.rs$"
-        :CargoCheck
-        else
-        :Make
-        endif
-    endfunction
-
-    " Lets me run different run commands depending on the filename
-    function SmartRun()
-        if @% =~ "\.rs$"
-        :CargoRun
         else
         :Make
         endif
@@ -126,7 +99,7 @@ cmd [[
     " Stole this off reddit.
     " Use gx to open files and URLs, without depending on netrw.
     function! OpenLink()
-    let g:os = substitute(system('uname'), "\n", "", "")
+	    let g:os = substitute(system('uname'), "\n", "", "")
         let file = expand('<cfile>')
         if g:os == "Linux"
         call jobstart('xdg-open '..file, {'detach': v:true})
@@ -136,21 +109,11 @@ cmd [[
     endfunction
 ]]
 
-require('treesitter-config')
-require('lsp-config')
-require('telescope-config')
-require('general')
-
--- cnoreabbrev vwi VimwikiIndex
--- cnoreabbrev vwh VimwikiAll2HTML
-
 local function map(mode, lhs, rhs, opts)
   local options = {noremap = true}
   if opts then options = vim.tbl_extend('force', options, opts) end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
-
-local noremapopts = {silent = true, noremap = true}
 
 map('n', '<leader>w', ':w<cr>')
 map('n', 'gx', '<Cmd>call OpenLink()<CR>')
@@ -159,46 +122,41 @@ map('n', 'gx', '<Cmd>call OpenLink()<CR>')
 -- map('n', '<C-p>', ':cprevious<cr>')
 
 -- use ESC to enter normal mode in terminal
-map('t', '<ESC>', '<C-\\><C-n>', noremapopts)
+-- map('t', '<ESC>', '<C-\><C-n>')
 
 -- compilation / testing
-map('n', '<leader><space>', ':call SmartCompile()<cr>', noremapopts)
-map('n', '<C-Space>', ':call SmartRun()<cr>', noremapopts)
-
--- Telescope
-map('n', '<leader>e', '<Cmd>lua require("telescope.builtin").find_files({find_command={"rg", "--files", "--hidden", "--smart-case", "--no-ignore", "--follow", "--glob", "!.git/*"}})<cr>', noremapopts)
-map('n', '<leader>b', '<Cmd>Telescope buffers<cr>', noremapopts)
-map('n', '<leader>H', '<Cmd>Telescope help_tags<cr>', noremapopts)
-map('n', '<leader>f', '<Cmd>Telescope live_grep<cr>', noremapopts)
-map('n', '<leader>m', '<Cmd>Telescope man_pages<cr>', noremapopts)
+map('n', '<leader><space>', ':call SmartCompile()<cr>', {silent = true, noremap = true})
+-- map('n', '<C-Space>', ':Dispatch<cr>', {silent = true, noremap = true})
 
 -- fugitive
-map('n', '<leader>g', ':G<cr>', noremapopts)
+map('n', '<leader>g', ':G<cr>', {silent = true, noremap = true})
 
 -- symbols-outline
-map('n', '<leader>o', ':SymbolsOutline<cr>', noremapopts)
+map('n', '<leader>o', ':SymbolsOutline<cr>', {silent = true, noremap = true})
+
+-- mkdnflow
+map('n', '<leader>x', ':MkdnToggleToDo<cr>', {silent = true, noremap = true})
 
 -- lsp
-map('n', 'gy', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', noremapopts)
-map('n','gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', noremapopts)
-map('n','gm', '<Cmd>lua vim.lsp.buf.implementation()<CR>', noremapopts)
-map('n','gr', '<Cmd>lua vim.lsp.buf.references()<CR>', noremapopts)
-map('n', '<leader>a', '<Cmd>lua vim.lsp.buf.code_action()<CR>', noremapopts)
-map('n', '<leader>d', '<Cmd>Telescope diagnostics<CR>', noremapopts)
-map('n', '<leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', noremapopts)
-map('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', bufopts)
-map('n', '<C-k>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', bufopts)
+map('n', '<leader>a', '<Cmd>lua vim.lsp.buf.code_action()<CR>', {silent = true, noremap = true})
+map('n', '<leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', {silent = true, noremap = true})
 
 -- easy window creation
-map('n','<leader>h', ':wincmd v<CR>', noremapopts)
-map('n','<leader>j', ':wincmd s | wincmd j<CR>', noremapopts)
-map('n','<leader>k', ':wincmd s<CR>', noremapopts)
-map('n','<leader>l', ':wincmd v | wincmd l<CR>', noremapopts)
+map('n','<leader>h', ':wincmd v<CR>', {silent = true, noremap = true})
+map('n','<leader>j', ':wincmd s | wincmd j<CR>', {silent = true, noremap = true})
+map('n','<leader>k', ':wincmd s<CR>', {silent = true, noremap = true})
+map('n','<leader>l', ':wincmd v | wincmd l<CR>', {silent = true, noremap = true})
 
 -- tree view
-map('n','<leader>t', ':Neotree toggle reveal<cr>', noremapopts)
+map('n','<leader>t', ':Neotree toggle reveal<cr>', {silent = true, noremap = true})
 
 cmd [[
     " Return to last edit position when opening files
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+    " Remove trailing newlines before saving
+    autocmd BufWritePre * :%s/\n\+\%$//e
+
+    " Remove trailing whitespace before saving
+    autocmd BufWritePre * :%s/\s\+$//e
 ]]
